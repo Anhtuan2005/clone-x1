@@ -1,0 +1,352 @@
+﻿@model bike.Models.HopDong
+@{
+    ViewData["Title"] = $"Chi tiết hợp đồng HD{Model.MaHopDong:D6}";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .detail-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 30px 0;
+    }
+
+    .contract-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .contract-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 30px;
+        text-align: center;
+    }
+
+    .contract-number {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .contract-status {
+        display: inline-block;
+        padding: 8px 20px;
+        background: rgba(255,255,255,0.2);
+        border-radius: 20px;
+        margin-top: 10px;
+    }
+
+    .contract-body {
+        padding: 30px;
+    }
+
+    .section-divider {
+        height: 2px;
+        background: #f0f0f0;
+        margin: 30px 0;
+    }
+
+    .info-section {
+        margin-bottom: 30px;
+    }
+
+    .section-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .info-item {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 8px;
+        border-left: 3px solid #667eea;
+    }
+
+    .info-label {
+        font-size: 13px;
+        color: #666;
+        margin-bottom: 5px;
+    }
+
+    .info-value {
+        font-size: 16px;
+        color: #333;
+        font-weight: 600;
+    }
+
+    /* Financial section */
+    .financial-summary {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        color: white;
+        padding: 25px;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+
+    .financial-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+
+    .financial-total {
+        font-size: 28px;
+        font-weight: bold;
+        border-top: 2px solid rgba(255,255,255,0.3);
+        padding-top: 15px;
+        margin-top: 15px;
+    }
+
+    /* Action buttons */
+    .action-section {
+        margin-top: 30px;
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+    }
+
+    .btn-print {
+        background: #6c757d;
+        color: white;
+        border: none;
+        padding: 12px 30px;
+    }
+
+    .btn-return {
+        background: #28a745;
+        color: white;
+        border: none;
+        padding: 12px 30px;
+    }
+
+    /* Print styles */
+    
+    @@media print {
+        .no-print
+
+    {
+        display: none;
+    }
+
+    .contract-card {
+        box-shadow: none;
+    }
+
+    }
+</style>
+
+<div class="detail-container">
+    <div class="contract-card">
+        <!-- Header -->
+        <div class="contract-header">
+            <div class="contract-number">
+                <i class="bi bi-file-earmark-text"></i> HD@(Model.MaHopDong.ToString("D6"))
+            </div>
+            <div class="contract-status">
+                @Model.TrangThai
+            </div>
+            <p class="mb-0 mt-3">Ngày tạo: @Model.NgayTao.ToString("dd/MM/yyyy HH:mm")</p>
+        </div>
+
+        <!-- Body -->
+        <div class="contract-body">
+            <!-- Thông tin khách hàng -->
+            <div class="info-section">
+                <h3 class="section-title">
+                    <i class="bi bi-person-fill"></i> Thông tin khách hàng
+                </h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">Họ và tên</div>
+                        <div class="info-value">@Model.HoTenKhach</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Số điện thoại</div>
+                        <div class="info-value">@Model.SoDienThoai</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">CCCD/CMND</div>
+                        <div class="info-value">@Model.SoCCCD</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Địa chỉ</div>
+                        <div class="info-value">@(Model.DiaChi ?? "Không có")</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- Thông tin xe -->
+            <div class="info-section">
+                <h3 class="section-title">
+                    <i class="bi bi-bicycle"></i> Thông tin xe
+                </h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">Tên xe</div>
+                        <div class="info-value">@Model.Xe?.TenXe</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Biển số</div>
+                        <div class="info-value">@Model.Xe?.BienSoXe</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Hãng xe</div>
+                        <div class="info-value">@Model.Xe?.HangXe</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Giá thuê/ngày</div>
+                        <div class="info-value text-danger">@Model.GiaThueNgay.ToString("N0")đ</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- Thời gian thuê -->
+            <div class="info-section">
+                <h3 class="section-title">
+                    <i class="bi bi-calendar-range"></i> Thời gian thuê
+                </h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">Ngày nhận xe</div>
+                        <div class="info-value">@Model.NgayNhanXe.ToString("dd/MM/yyyy")</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Ngày trả xe dự kiến</div>
+                        <div class="info-value">@Model.NgayTraXeDuKien.ToString("dd/MM/yyyy")</div>
+                    </div>
+                    @if (Model.NgayTraXeThucTe.HasValue)
+                    {
+                        <div class="info-item">
+                            <div class="info-label">Ngày trả xe thực tế</div>
+                            <div class="info-value">@Model.NgayTraXeThucTe.Value.ToString("dd/MM/yyyy")</div>
+                        </div>
+                    }
+                    <div class="info-item">
+                        <div class="info-label">Số ngày thuê</div>
+                        <div class="info-value">@Model.SoNgayThue ngày</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- Thông tin tài chính -->
+            <div class="info-section">
+                <h3 class="section-title">
+                    <i class="bi bi-cash-stack"></i> Thông tin tài chính
+                </h3>
+                <div class="financial-summary">
+                    <div class="financial-row">
+                        <span>Tiền thuê xe (@Model.SoNgayThue ngày x @Model.GiaThueNgay.ToString("N0")đ):</span>
+                        <span>@((Model.SoNgayThue * Model.GiaThueNgay).ToString("N0"))đ</span>
+                    </div>
+                    <div class="financial-row">
+                        <span>Tiền cọc:</span>
+                        <span>@Model.TienCoc.ToString("N0")đ</span>
+                    </div>
+                    @if (Model.PhuPhi > 0)
+                    {
+                        <div class="financial-row">
+                            <span>Phụ phí:</span>
+                            <span>@Model.PhuPhi.ToString("N0")đ</span>
+                        </div>
+                    }
+                    <div class="financial-row financial-total">
+                        <span>Tổng cộng:</span>
+                        <span>@((Model.TongTien + Model.TienCoc).ToString("N0"))đ</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ghi chú -->
+            @if (!string.IsNullOrEmpty(Model.GhiChu))
+            {
+                <div class="section-divider"></div>
+                <div class="info-section">
+                    <h3 class="section-title">
+                        <i class="bi bi-chat-left-text"></i> Ghi chú
+                    </h3>
+                    <div class="info-item">
+                        <div class="info-value">@Model.GhiChu</div>
+                    </div>
+                </div>
+            }
+
+            <!-- Thông tin phiếu đặt chỗ -->
+            @if (Model.DatCho != null)
+            {
+                <div class="section-divider"></div>
+                <div class="info-section">
+                    <h3 class="section-title">
+                        <i class="bi bi-link-45deg"></i> Liên kết phiếu đặt chỗ
+                    </h3>
+                    <div class="info-item">
+                        <div class="info-label">Mã phiếu đặt chỗ</div>
+                        <div class="info-value">DC@(Model.MaDatCho?.ToString("D6"))</div>
+                    </div>
+                </div>
+            }
+
+            <!-- Người tạo -->
+            @if (Model.NguoiTao != null)
+            {
+                <div class="section-divider"></div>
+                <div class="info-section">
+                    <p class="text-muted text-center mb-0">
+                        <small>Người tạo: @Model.NguoiTao.Ten - @Model.NgayTao.ToString("dd/MM/yyyy HH:mm")</small>
+                    </p>
+                </div>
+            }
+
+            <!-- Action buttons -->
+            <div class="action-section no-print">
+                <button onclick="window.print()" class="btn btn-print">
+                    <i class="bi bi-printer"></i> In hợp đồng
+                </button>
+                @if (Model.TrangThai == "Đang thuê")
+                {
+                    <a asp-action="TraXe" asp-route-id="@Model.MaHopDong" class="btn btn-return">
+                        <i class="bi bi-check-circle"></i> Xử lý trả xe
+                    </a>
+                }
+                <a asp-action="Index" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i> Quay lại
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Print formatting
+        window.addEventListener('beforeprint', function() {
+            document.body.style.padding = '0';
+            document.querySelector('.container-fluid').style.maxWidth = '100%';
+        });
+
+        window.addEventListener('afterprint', function() {
+            document.body.style.padding = '';
+            document.querySelector('.container-fluid').style.maxWidth = '';
+        });
+    </script>
+}

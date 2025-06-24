@@ -1,0 +1,184 @@
+﻿@model bike.ViewModels.LoginViewModel   
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_HomePage.cshtml";
+}
+<style>
+    .login-container {
+        max-width: 450px;
+        margin: 50px auto;
+    }
+
+    .login-card {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+    }
+
+    .login-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+        .login-header h2 {
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .login-header p {
+            color: #666;
+        }
+
+    .form-floating {
+        margin-bottom: 20px;
+    }
+
+    .btn-login {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        border: none;
+        padding: 12px;
+        font-weight: 500;
+        font-size: 16px;
+        width: 100%;
+        border-radius: 10px;
+        transition: all 0.3s;
+    }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(79, 172, 254, 0.4);
+        }
+
+    .form-check {
+        margin-bottom: 20px;
+    }
+
+    .forgot-password {
+        text-align: right;
+        margin-bottom: 20px;
+    }
+
+    .register-link {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .social-login {
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    .divider {
+        text-align: center;
+        margin: 20px 0;
+        position: relative;
+    }
+
+        .divider:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #ddd;
+        }
+
+        .divider span {
+            background: white;
+            padding: 0 20px;
+            position: relative;
+            color: #666;
+        }
+
+    .alert-icon {
+        font-size: 60px;
+        color: #4facfe;
+        margin-bottom: 20px;
+    }
+</style>
+
+<div class="container">
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <i class="bi bi-shield-lock alert-icon"></i>
+                <h2>Đăng Nhập</h2>
+                <p>Chào mừng bạn quay trở lại!</p>
+            </div>
+
+            <!-- Hiển thị thông báo -->
+            @if (TempData["ThongBao"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="bi bi-check-circle"></i> @TempData["ThongBao"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            }
+
+            <form asp-action="Login" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                <!-- Email -->
+                <div class="form-floating">
+                    <input asp-for="Email" class="form-control" placeholder="Nhập email" autofocus />
+                    <label asp-for="Email"><i class="bi bi-envelope"></i> Email</label>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <!-- Mật khẩu -->
+                <div class="form-floating">
+                    <input asp-for="MatKhau" class="form-control" placeholder="Nhập mật khẩu" />
+                    <label asp-for="MatKhau"><i class="bi bi-lock"></i> Mật khẩu</label>
+                    <span asp-validation-for="MatKhau" class="text-danger"></span>
+                </div>
+
+                <!-- Remember me & Forgot password -->
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="form-check">
+                        <input asp-for="RememberMe" class="form-check-input" />
+                        <label asp-for="RememberMe" class="form-check-label">
+                            Ghi nhớ đăng nhập
+                        </label>
+                    </div>
+                    <div class="forgot-password">
+                        <a href="#" class="text-decoration-none">Quên mật khẩu?</a>
+                    </div>
+                </div>
+
+                <!-- Nút đăng nhập -->
+                <button type="submit" class="btn btn-primary btn-login">
+                    <i class="bi bi-box-arrow-in-right"></i> Đăng Nhập
+                </button>
+
+                <!-- Link đăng ký -->
+                <div class="register-link">
+                    <p>Chưa có tài khoản? <a asp-action="Register" class="text-decoration-none">Đăng ký ngay</a></p>
+                </div>
+
+                <!-- Hoặc -->
+                <div class="divider">
+                    <span>HOẶC</span>
+                </div>
+
+                <!-- Social login -->
+                <div class="social-login">
+                    <button type="button" class="btn btn-outline-danger me-2">
+                        <i class="bi bi-google"></i> Google
+                    </button>
+                    <button type="button" class="btn btn-outline-primary">
+                        <i class="bi bi-facebook"></i> Facebook
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

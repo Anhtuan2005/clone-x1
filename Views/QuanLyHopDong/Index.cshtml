@@ -1,0 +1,390 @@
+﻿@model IEnumerable<bike.Models.HopDong>
+@{
+	ViewData["Title"] = "Quản Lý Hợp Đồng";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int totalPages = (int)Math.Ceiling((double)ViewBag.TotalItems / ViewBag.PageSize);
+    int currentPage = ViewBag.CurrentPage;
+}
+
+<style>
+    .page-header {
+        margin-bottom: 30px;
+    }
+
+    .stat-cards {
+        margin-bottom: 30px;
+    }
+
+    .stat-card {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        transition: transform 0.3s;
+    }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+    .stat-number {
+        font-size: 36px;
+        font-weight: bold;
+        margin: 10px 0;
+    }
+
+    .stat-label {
+        color: #666;
+        font-size: 14px;
+    }
+
+    .stat-active {
+        color: #28a745;
+    }
+
+    .stat-completed {
+        color: #17a2b8;
+    }
+
+    .filter-section {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    .contract-table {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    .status-badge {
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .status-active {
+        background: #d4edda;
+        color: #155724;
+    }
+
+    .status-completed {
+        background: #d1ecf1;
+        color: #0c5460;
+    }
+
+    .status-cancelled {
+        background: #f8d7da;
+        color: #721c24;
+    }
+
+    /* Search box styles */
+    .search-box {
+        position: relative;
+    }
+
+    .search-icon {
+        position: absolute;
+        top: 50%;
+        left: 15px;
+        transform: translateY(-50%);
+        color: #6c757d;
+    }
+
+    .search-input {
+        padding-left: 40px;
+        border-radius: 25px;
+        border: 2px solid #e0e0e0;
+        transition: all 0.3s;
+    }
+
+        .search-input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+        }
+
+    .clear-search {
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #6c757d;
+        display: none;
+    }
+
+    tr.highlight-row {
+        background-color: #fff3cd !important;
+        transition: background-color 0.3s;
+    }
+</style>
+
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="page-header d-flex justify-content-between align-items-center">
+        <h1><i class="bi bi-file-earmark-text"></i> Quản Lý Hợp Đồng</h1>
+        <div>
+            <a asp-action="Create" class="btn btn-success">
+                <i class="bi bi-plus-circle"></i> Tạo hợp đồng mới
+            </a>
+            <a asp-action="TimPhieuDatCho" class="btn btn-primary">
+                <i class="bi bi-search"></i> Tìm phiếu đặt chỗ
+            </a>
+            <a asp-action="LichSuKhachHang" class="btn btn-info">
+                <i class="bi bi-clock-history"></i> Lịch sử khách hàng
+            </a>
+        </div>
+    </div>
+
+    <!-- Statistics -->
+    <div class="row stat-cards">
+        <div class="col-md-4">
+            <div class="stat-card">
+                <i class="bi bi-file-text" style="font-size: 40px; color: #666;"></i>
+                <div class="stat-number">@ViewBag.TotalItems</div>
+                <div class="stat-label">Tổng hợp đồng</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="stat-card">
+                <i class="bi bi-clock" style="font-size: 40px; color: #28a745;"></i>
+                <div class="stat-number stat-active">@ViewBag.TongDangThue</div>
+                <div class="stat-label">Đang thuê</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="stat-card">
+                <i class="bi bi-check-circle" style="font-size: 40px; color: #17a2b8;"></i>
+                <div class="stat-number stat-completed">@ViewBag.TongHoanThanh</div>
+                <div class="stat-label">Hoàn thành</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filter -->
+    <div class="filter-section">
+        <form method="get" class="row g-3 align-items-center">
+            <div class="col-md-3">
+                <select name="trangThai" class="form-select">
+                    <option value="">Tất cả trạng thái</option>
+                    <option value="Đang thuê" selected="@(ViewBag.TrangThai == "Đang thuê" ? "selected" : null)">Đang thuê</option>
+                    <option value="Hoàn thành" selected="@(ViewBag.TrangThai == "Hoàn thành" ? "selected" : null)">Hoàn thành</option>
+                    <option value="Hủy" selected="@(ViewBag.TrangThai == "Hủy" ? "selected" : null)">Hủy</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-secondary">
+                    <i class="bi bi-funnel"></i> Lọc
+                </button>
+            </div>
+            <div class="col-md-4 ms-auto">
+                <div class="search-box">
+                    <i class="bi bi-search search-icon"></i>
+                    <input type="text"
+                           id="searchPhone"
+                           class="form-control search-input"
+                           placeholder="Tìm theo số điện thoại..."
+                           maxlength="20">
+                    <i class="bi bi-x-circle clear-search" id="clearSearch"></i>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Table -->
+    <div class="contract-table">
+        <table class="table table-hover mb-0" id="contractTable">
+            <thead class="table-light">
+                <tr>
+                    <th>Mã HĐ</th>
+                    <th>Khách hàng</th>
+                    <th>Xe</th>
+                    <th>Ngày nhận</th>
+                    <th>Ngày trả</th>
+                    <th>Tổng tiền</th>
+                    <th>Trạng thái</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr data-phone="@item.SoDienThoai">
+                        <td><strong>HD@(item.MaHopDong.ToString("D6"))</strong></td>
+                        <td>
+                            @item.HoTenKhach<br />
+                            <small class="text-muted phone-number">@item.SoDienThoai</small>
+                        </td>
+                        <td>
+                            @item.Xe?.TenXe<br />
+                            <small class="text-muted">@item.Xe?.BienSoXe</small>
+                        </td>
+                        <td>@item.NgayNhanXe.ToString("dd/MM/yyyy")</td>
+                        <td>
+                            @if (item.NgayTraXeThucTe.HasValue)
+                            {
+                                @item.NgayTraXeThucTe.Value.ToString("dd/MM/yyyy")
+                            }
+                            else
+                            {
+                                @item.NgayTraXeDuKien.ToString("dd/MM/yyyy")
+                                <small class="text-muted">(dự kiến)</small>
+                            }
+                        </td>
+                        <td class="text-danger fw-bold">@item.TongTien.ToString("N0")đ</td>
+                        <td>
+                            @{
+                                string statusClass = item.TrangThai switch
+                                {
+                                    "Đang thuê" => "status-active",
+                                    "Hoàn thành" => "status-completed",
+                                    "Hủy" => "status-cancelled",
+                                    _ => ""
+                                };
+                            }
+                            <span class="status-badge @statusClass">@item.TrangThai</span>
+                        </td>
+                        <td>
+                            <a asp-action="ChiTiet" asp-route-id="@item.MaHopDong" class="btn btn-sm btn-info" title="Chi tiết">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            @if (item.TrangThai == "Đang thuê")
+                            {
+                                <a asp-action="TraXe" asp-route-id="@item.MaHopDong" class="btn btn-sm btn-success" title="Trả xe">
+                                    <i class="bi bi-check-circle"></i>
+                                </a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <!-- Phân trang -->
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                @for (int i = 1; i <= totalPages; i++)
+                {
+                    <li class="page-item @(i == currentPage ? "active" : "")">
+                        <a class="page-link" href="@Url.Action("Index", new { page = i, pageSize = ViewBag.PageSize, trangThai = ViewBag.TrangThai })">@i</a>
+                    </li>
+                }
+            </ul>
+        </nav>
+
+        <!-- No results message -->
+        <div id="noResults" class="text-center p-5" style="display: none;">
+            <i class="bi bi-search" style="font-size: 48px; color: #ccc;"></i>
+            <p class="mt-3 text-muted">Không tìm thấy hợp đồng với số điện thoại này</p>
+        </div>
+
+        <!-- No results message -->
+        <div id="noResults" class="text-center p-5" style="display: none;">
+            <i class="bi bi-search" style="font-size: 48px; color: #ccc;"></i>
+            <p class="mt-3 text-muted">Không tìm thấy hợp đồng với số điện thoại này</p>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            const searchInput = $('#searchPhone');
+            const clearButton = $('#clearSearch');
+            const contractTable = $('#contractTable');
+            const noResults = $('#noResults');
+            let searchTimeout;
+
+            // Show/hide clear button
+            searchInput.on('input', function() {
+                const value = $(this).val();
+                if (value.length > 0) {
+                    clearButton.show();
+                } else {
+                    clearButton.hide();
+                }
+
+                // Clear previous timeout
+                clearTimeout(searchTimeout);
+
+                // Set new timeout for search
+                searchTimeout = setTimeout(function() {
+                    performSearch(value);
+                }, 300); // 300ms delay
+            });
+
+            // Clear search
+            clearButton.on('click', function() {
+                searchInput.val('');
+                clearButton.hide();
+                performSearch('');
+                searchInput.focus();
+            });
+
+            // Perform search function
+            function performSearch(searchValue) {
+                const rows = contractTable.find('tbody tr');
+                let hasResults = false;
+
+                if (searchValue === '') {
+                    // Show all rows
+                    rows.show().removeClass('highlight-row');
+                    contractTable.show();
+                    noResults.hide();
+                    return;
+                }
+
+                // Search logic
+                rows.each(function() {
+                    const row = $(this);
+                    const phone = row.data('phone');
+
+                    if (phone && phone.toString().includes(searchValue)) {
+                        row.show().addClass('highlight-row');
+                        hasResults = true;
+                    } else {
+                        row.hide().removeClass('highlight-row');
+                    }
+                });
+
+                // Show/hide no results message
+                if (hasResults) {
+                    contractTable.show();
+                    noResults.hide();
+                } else {
+                    contractTable.hide();
+                    noResults.show();
+                }
+            }
+
+            // Format phone number input (optional)
+            searchInput.on('keypress', function(e) {
+                // Only allow numbers, spaces, and common phone characters
+                const char = String.fromCharCode(e.which);
+                if (!/[0-9\s\-\+\(\)]/.test(char)) {
+                    e.preventDefault();
+                }
+            });
+
+            // Handle Enter key
+            searchInput.on('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const foundRows = contractTable.find('tbody tr:visible');
+                    if (foundRows.length === 1) {
+                        // If only one result, go to detail
+                        const detailLink = foundRows.find('a[title="Chi tiết"]');
+                        if (detailLink.length > 0) {
+                            window.location.href = detailLink.attr('href');
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+}

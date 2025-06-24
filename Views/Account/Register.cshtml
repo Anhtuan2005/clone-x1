@@ -1,0 +1,168 @@
+﻿@model bike.ViewModels.RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_HomePage.cshtml";
+}
+
+<style>
+    .register-container {
+        max-width: 500px;
+        margin: 50px auto;
+    }
+
+    .register-card {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+    }
+
+    .register-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+        .register-header h2 {
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .register-header p {
+            color: #666;
+        }
+
+    .form-floating {
+        margin-bottom: 20px;
+    }
+
+    .btn-register {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        padding: 12px;
+        font-weight: 500;
+        font-size: 16px;
+        width: 100%;
+        border-radius: 10px;
+        transition: all 0.3s;
+    }
+
+        .btn-register:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+    .login-link {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .social-register {
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    .divider {
+        text-align: center;
+        margin: 20px 0;
+        position: relative;
+    }
+
+        .divider:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #ddd;
+        }
+
+        .divider span {
+            background: white;
+            padding: 0 20px;
+            position: relative;
+            color: #666;
+        }
+</style>
+
+<div class="container">
+    <div class="register-container">
+        <div class="register-card">
+            <div class="register-header">
+                <h2><i class="bi bi-person-plus"></i> Đăng Ký</h2>
+                <p>Tạo tài khoản mới để sử dụng dịch vụ</p>
+            </div>
+
+            <form asp-action="Register" method="post">
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                <!-- Họ tên -->
+                <div class="form-floating">
+                    <input asp-for="Ten" class="form-control" placeholder="Nhập họ tên" />
+                    <label asp-for="Ten"><i class="bi bi-person"></i> Họ và tên</label>
+                    <span asp-validation-for="Ten" class="text-danger"></span>
+                </div>
+
+                <!-- Email -->
+                <div class="form-floating">
+                    <input asp-for="Email" class="form-control" placeholder="Nhập email" />
+                    <label asp-for="Email"><i class="bi bi-envelope"></i> Email</label>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <!-- Số điện thoại -->
+                <div class="form-floating">
+                    <input asp-for="SoDienThoai" class="form-control" placeholder="Nhập số điện thoại" />
+                    <label asp-for="SoDienThoai"><i class="bi bi-phone"></i> Số điện thoại (tùy chọn)</label>
+                    <span asp-validation-for="SoDienThoai" class="text-danger"></span>
+                </div>
+
+                <!-- Mật khẩu -->
+                <div class="form-floating">
+                    <input asp-for="MatKhau" class="form-control" placeholder="Nhập mật khẩu" />
+                    <label asp-for="MatKhau"><i class="bi bi-lock"></i> Mật khẩu</label>
+                    <span asp-validation-for="MatKhau" class="text-danger"></span>
+                </div>
+
+                <!-- Xác nhận mật khẩu -->
+                <div class="form-floating">
+                    <input asp-for="XacNhanMatKhau" class="form-control" placeholder="Xác nhận mật khẩu" />
+                    <label asp-for="XacNhanMatKhau"><i class="bi bi-lock-fill"></i> Xác nhận mật khẩu</label>
+                    <span asp-validation-for="XacNhanMatKhau" class="text-danger"></span>
+                </div>
+
+                <!-- Nút đăng ký -->
+                <button type="submit" class="btn btn-primary btn-register">
+                    <i class="bi bi-person-plus"></i> Đăng Ký
+                </button>
+
+                <!-- Link đăng nhập -->
+                <div class="login-link">
+                    <p>Đã có tài khoản? <a asp-action="Login" class="text-decoration-none">Đăng nhập ngay</a></p>
+                </div>
+
+                <!-- Hoặc -->
+                <div class="divider">
+                    <span>HOẶC</span>
+                </div>
+
+                <!-- Social login -->
+                <div class="social-register">
+                    <button type="button" class="btn btn-outline-danger me-2">
+                        <i class="bi bi-google"></i> Google
+                    </button>
+                    <button type="button" class="btn btn-outline-primary">
+                        <i class="bi bi-facebook"></i> Facebook
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

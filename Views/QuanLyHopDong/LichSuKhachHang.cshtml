@@ -1,0 +1,308 @@
+﻿@model IEnumerable<bike.Models.HopDong>
+@{
+    ViewData["Title"] = "Lịch Sử Khách Hàng";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .history-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 30px 0;
+    }
+
+    .search-section {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        margin-bottom: 30px;
+    }
+
+    .search-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .search-input {
+        font-size: 20px;
+        padding: 15px;
+        text-align: center;
+    }
+
+    .btn-search {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        color: white;
+        border: none;
+        padding: 15px 40px;
+        font-size: 18px;
+        width: 100%;
+    }
+
+    /* Customer info */
+    .customer-info {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 15px;
+        margin-bottom: 30px;
+    }
+
+    .customer-stats {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+    }
+
+    .stat-item {
+        text-align: center;
+    }
+
+    .stat-value {
+        font-size: 32px;
+        font-weight: bold;
+    }
+
+    .stat-label {
+        font-size: 14px;
+        opacity: 0.9;
+    }
+
+    /* History timeline */
+    .timeline {
+        position: relative;
+        padding: 20px 0;
+    }
+
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #e9ecef;
+        }
+
+    .timeline-item {
+        position: relative;
+        padding-left: 70px;
+        margin-bottom: 30px;
+    }
+
+    .timeline-marker {
+        position: absolute;
+        left: 20px;
+        top: 0;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #667eea;
+        border: 3px solid white;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .timeline-content {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    .contract-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        margin-bottom: 15px;
+    }
+
+    .contract-code {
+        font-size: 18px;
+        font-weight: bold;
+        color: #667eea;
+    }
+
+    .contract-status {
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .status-completed {
+        background: #d4edda;
+        color: #155724;
+    }
+
+    .status-active {
+        background: #fff3cd;
+        color: #856404;
+    }
+
+    .contract-details {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .detail-item {
+        font-size: 14px;
+    }
+
+    .detail-label {
+        color: #666;
+    }
+
+    .detail-value {
+        color: #333;
+        font-weight: 500;
+    }
+
+    .contract-total {
+        text-align: right;
+        font-size: 20px;
+        font-weight: bold;
+        color: #dc3545;
+        margin-top: 10px;
+    }
+
+    .no-history {
+        text-align: center;
+        padding: 60px 20px;
+        color: #6c757d;
+    }
+</style>
+
+<div class="history-container">
+    <!-- Search Section -->
+    <div class="search-section">
+        <div class="search-header">
+            <h2><i class="bi bi-clock-history"></i> Tra Cứu Lịch Sử Khách Hàng</h2>
+            <p class="text-muted">Nhập số điện thoại để xem lịch sử thuê xe</p>
+        </div>
+
+        <form method="get" class="row justify-content-center">
+            <div class="col-md-6">
+                <input type="tel"
+                       name="soDienThoai"
+                       class="form-control search-input mb-3"
+                       placeholder="Nhập số điện thoại (VD: 0901234567)"
+                       value="@ViewBag.SoDienThoai"
+                       pattern="[0-9]{10}"
+                       required />
+                <button type="submit" class="btn btn-search">
+                    <i class="bi bi-search"></i> Tra Cứu
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Results -->
+    @if (Model != null && Model.Any())
+    {
+        <!-- Customer Info -->
+        <div class="customer-info">
+            <h3 class="text-center mb-0">@Model.First().HoTenKhach</h3>
+            <p class="text-center mb-3">@ViewBag.SoDienThoai</p>
+
+            <div class="customer-stats">
+                <div class="stat-item">
+                    <div class="stat-value">@Model.Count()</div>
+                    <div class="stat-label">Tổng hợp đồng</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">@Model.Count(h => h.TrangThai == "Hoàn thành")</div>
+                    <div class="stat-label">Đã hoàn thành</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">@Model.Sum(h => h.TongTien).ToString("N0")đ</div>
+                    <div class="stat-label">Tổng chi tiêu</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- History Timeline -->
+        <h3 class="mb-4">Lịch Sử Thuê Xe</h3>
+        <div class="timeline">
+            @foreach (var hopDong in Model)
+            {
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="contract-header">
+                            <span class="contract-code">HD@(hopDong.MaHopDong.ToString("D6"))</span>
+                            <span class="contract-status @(hopDong.TrangThai == "Hoàn thành" ? "status-completed" : "status-active")">
+                                @hopDong.TrangThai
+                            </span>
+                        </div>
+
+                        <div class="contract-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Xe:</span>
+                                <span class="detail-value">@hopDong.Xe?.TenXe (@hopDong.Xe?.BienSoXe)</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Ngày tạo HĐ:</span>
+                                <span class="detail-value">@hopDong.NgayTao.ToString("dd/MM/yyyy")</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Thời gian thuê:</span>
+                                <span class="detail-value">
+                                    @hopDong.NgayNhanXe.ToString("dd/MM") -
+                                    @(hopDong.NgayTraXeThucTe?.ToString("dd/MM/yyyy") ?? hopDong.NgayTraXeDuKien.ToString("dd/MM/yyyy"))
+                                </span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Số ngày:</span>
+                                <span class="detail-value">@hopDong.SoNgayThue ngày</span>
+                            </div>
+                        </div>
+
+                        @if (!string.IsNullOrEmpty(hopDong.GhiChu))
+                        {
+                            <div class="mt-2">
+                                <small class="text-muted">Ghi chú: @hopDong.GhiChu</small>
+                            </div>
+                        }
+
+                        <div class="contract-total">
+                            Tổng tiền: @hopDong.TongTien.ToString("N0")đ
+                        </div>
+
+                        <div class="mt-3">
+                            <a asp-action="ChiTiet" asp-route-id="@hopDong.MaHopDong" class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-eye"></i> Xem chi tiết
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else if (ViewBag.SoDienThoai != null)
+    {
+        <div class="no-history">
+            <i class="bi bi-inbox" style="font-size: 60px;"></i>
+            <h4 class="mt-3">Không tìm thấy lịch sử</h4>
+            <p>Khách hàng với số điện thoại này chưa có hợp đồng nào</p>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Focus vào ô tìm kiếm
+            $('input[name="soDienThoai"]').focus();
+
+            // Animation cho timeline
+            $('.timeline-item').each(function(index) {
+                $(this).delay(index * 100).animate({
+                    opacity: 1,
+                    marginLeft: 0
+                }, 500);
+            });
+        });
+    </script>
+}

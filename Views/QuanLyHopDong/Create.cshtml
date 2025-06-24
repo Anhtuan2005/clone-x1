@@ -1,0 +1,418 @@
+﻿@model bike.Models.HopDong
+
+@{
+    ViewData["Title"] = "Tạo Hợp Đồng Mới";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .create-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 30px 0;
+    }
+
+    .create-header {
+        background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 15px 15px 0 0;
+        text-align: center;
+    }
+
+    .create-body {
+        background: white;
+        padding: 30px;
+        border-radius: 0 0 15px 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+
+    .section-title {
+        color: #333;
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #f0f0f0;
+    }
+
+    .form-section {
+        margin-bottom: 30px;
+    }
+
+    .money-input {
+        font-size: 18px;
+        font-weight: bold;
+        text-align: right;
+    }
+
+    .summary-box {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+
+    .total-amount {
+        font-size: 32px;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .btn-create {
+        background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        color: white;
+        border: none;
+        padding: 15px 40px;
+        font-size: 18px;
+        font-weight: bold;
+        width: 100%;
+        margin-top: 20px;
+        transition: all 0.3s;
+    }
+
+        .btn-create:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(40, 167, 69, 0.4);
+            color: white;
+        }
+
+    .vehicle-info {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        display: none;
+    }
+
+    .info-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    .info-label {
+        color: #666;
+        font-weight: 500;
+    }
+
+    .info-value {
+        color: #333;
+        font-weight: bold;
+    }
+</style>
+
+<div class="create-container">
+    <!-- Header -->
+    <div class="create-header">
+        <h2><i class="bi bi-file-earmark-plus"></i> Tạo Hợp Đồng Thuê Xe Mới</h2>
+        <p class="mb-0">Nhập đầy đủ thông tin để tạo hợp đồng</p>
+    </div>
+
+    <!-- Body -->
+    <div class="create-body">
+        <form asp-action="Create" method="post" id="createContractForm">
+            @Html.AntiForgeryToken()
+
+            <!-- Chọn xe -->
+            <div class="section-title">
+                <i class="bi bi-bicycle"></i> Chọn xe thuê
+            </div>
+            <div class="form-section">
+                <div class="mb-3">
+                    <label asp-for="MaXe" class="form-label">Xe cho thuê <span class="text-danger">*</span></label>
+                    <select asp-for="MaXe" class="form-select" id="MaXe" asp-items="ViewBag.XeList">
+                        <option value="">-- Chọn xe --</option>
+                    </select>
+                    <span asp-validation-for="MaXe" class="text-danger"></span>
+                </div>
+
+                <!-- Thông tin xe sẽ hiển thị sau khi chọn -->
+                <div class="vehicle-info" id="vehicleInfo">
+                    <h5>Thông tin xe đã chọn:</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="info-row">
+                                <span class="info-label">Tên xe:</span>
+                                <span class="info-value" id="tenXe">-</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Biển số:</span>
+                                <span class="info-value" id="bienSo">-</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info-row">
+                                <span class="info-label">Hãng xe:</span>
+                                <span class="info-value" id="hangXe">-</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Giá thuê/ngày:</span>
+                                <span class="info-value text-danger" id="giaThue">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thông tin khách hàng -->
+            <div class="section-title">
+                <i class="bi bi-person"></i> Thông tin khách hàng
+            </div>
+            <div class="form-section">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label asp-for="HoTenKhach" class="form-label">Họ tên khách <span class="text-danger">*</span></label>
+                            <input asp-for="HoTenKhach" class="form-control" placeholder="Nhập họ tên đầy đủ" />
+                            <span asp-validation-for="HoTenKhach" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="SoDienThoai" class="form-label">Số điện thoại <span class="text-danger">*</span></label>
+                            <input asp-for="SoDienThoai" class="form-control" placeholder="VD: 0901234567" />
+                            <span asp-validation-for="SoDienThoai" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label asp-for="SoCCCD" class="form-label">CCCD/CMND <span class="text-danger">*</span></label>
+                            <input asp-for="SoCCCD" class="form-control" placeholder="Nhập số CCCD/CMND" />
+                            <span asp-validation-for="SoCCCD" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="DiaChi" class="form-label">Địa chỉ</label>
+                            <input asp-for="DiaChi" class="form-control" placeholder="Nhập địa chỉ (không bắt buộc)" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thời gian thuê -->
+            <div class="section-title">
+                <i class="bi bi-calendar"></i> Thời gian thuê
+            </div>
+            <div class="form-section">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label asp-for="NgayNhanXe" class="form-label">Ngày nhận xe <span class="text-danger">*</span></label>
+                            <input asp-for="NgayNhanXe" type="date" class="form-control" id="NgayNhanXe" />
+                            <span asp-validation-for="NgayNhanXe" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label asp-for="NgayTraXeDuKien" class="form-label">Ngày trả xe dự kiến <span class="text-danger">*</span></label>
+                            <input asp-for="NgayTraXeDuKien" type="date" class="form-control" id="NgayTraXeDuKien" />
+                            <span asp-validation-for="NgayTraXeDuKien" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thông tin tài chính -->
+            <div class="section-title">
+                <i class="bi bi-cash-coin"></i> Thông tin tài chính
+            </div>
+            <div class="form-section">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="mb-3">
+                            <label class="form-label">Giá thuê/ngày</label>
+                            <input type="text" class="form-control money-input" id="GiaThueDisplay" readonly />
+                            <input asp-for="GiaThueNgay" type="hidden" id="GiaThueNgay" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="mb-3">
+                            <label asp-for="TienCoc" class="form-label">Tiền cọc</label>
+                            <input asp-for="TienCoc"
+                                   class="form-control money-input"
+                                   id="TienCoc"
+                                   type="number"
+                                   min="0"
+                                   value="0"
+                                   placeholder="Nhập tiền cọc (không bắt buộc)" />
+                            <span asp-validation-for="TienCoc" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="mb-3">
+                            <label asp-for="PhuPhi" class="form-label">Phụ phí</label>
+                            <input asp-for="PhuPhi" class="form-control money-input" value="0" id="PhuPhi" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="GhiChu" class="form-label">Ghi chú</label>
+                    <textarea asp-for="GhiChu" class="form-control" rows="3" placeholder="Ghi chú thêm nếu có..."></textarea>
+                </div>
+            </div>
+
+            <!-- Tổng kết -->
+            <div class="summary-box">
+                <h4 class="text-center">Tổng kết hợp đồng</h4>
+                <div class="row mt-3">
+                    <div class="col-6">
+                        <p>Số ngày thuê:</p>
+                        <p>Tiền thuê xe:</p>
+                        <p>Tiền cọc:</p>
+                        <p>Phụ phí:</p>
+                    </div>
+                    <div class="col-6 text-end">
+                        <p><span id="soNgayThue">0</span> ngày</p>
+                        <p><span id="tienThue">0</span>đ</p>
+                        <p><span id="tienCocDisplay">0</span>đ</p>
+                        <p><span id="phuPhiDisplay">0</span>đ</p>
+                    </div>
+                </div>
+                <hr />
+                <div class="total-amount">
+                    Tổng cộng: <span id="tongTien">0</span>đ
+                </div>
+            </div>
+
+            <input type="hidden" asp-for="TongTien" id="TongTienInput" />
+
+            <button type="submit" class="btn btn-create">
+                <i class="bi bi-check-circle"></i> Tạo Hợp Đồng
+            </button>
+
+            <a asp-action="Index" class="btn btn-secondary mt-3 w-100">
+                <i class="bi bi-arrow-left"></i> Quay lại
+            </a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        var giaThueNgay = 0;
+
+        $(document).ready(function() {
+            // Khi chọn xe
+            $('#MaXe').on('change', function() {
+                var maXe = $(this).val();
+                if (maXe) {
+                    // Gọi AJAX lấy thông tin xe
+                    $.get('@Url.Action("GetXeInfo", "QuanLyHopDong")', { maXe: maXe }, function(response) {
+                        if (response.success) {
+                            var xe = response.data;
+
+                            // Hiển thị thông tin xe
+                            $('#tenXe').text(xe.tenXe);
+                            $('#bienSo').text(xe.bienSoXe);
+                            $('#hangXe').text(xe.hangXe);
+                            $('#giaThue').text(xe.giaThue.toLocaleString('vi-VN') + 'đ');
+
+                            // Set giá thuê
+                            giaThueNgay = xe.giaThue;
+                            $('#GiaThueNgay').val(giaThueNgay);
+                            $('#GiaThueDisplay').val(giaThueNgay.toLocaleString('vi-VN') + 'đ');
+
+                            // Hiển thị box thông tin xe
+                            $('#vehicleInfo').slideDown();
+
+                            // Tính toán lại
+                            calculateTotal();
+                        }
+                    });
+                } else {
+                    $('#vehicleInfo').slideUp();
+                    giaThueNgay = 0;
+                    $('#GiaThueNgay').val(0);
+                    $('#GiaThueDisplay').val('0đ');
+                    calculateTotal();
+                }
+            });
+
+            // Set tiền cọc mặc định = 0
+            $('#TienCoc').val(0);
+
+            // Khi thay đổi ngày
+            $('#NgayNhanXe, #NgayTraXeDuKien').on('change', function() {
+                calculateTotal();
+            });
+
+            // Khi thay đổi tiền cọc, phụ phí
+            $('#TienCoc, #PhuPhi').on('input', function() {
+                calculateTotal();
+            });
+
+            // Validate form submit
+            $('#createContractForm').on('submit', function(e) {
+                if (!$(this).valid()) {
+                    return false;
+                }
+
+                return confirm('Bạn có chắc chắn muốn tạo hợp đồng này?');
+            });
+
+            // Validate số điện thoại
+            $('#SoDienThoai').on('input', function() {
+                var sdt = $(this).val();
+                var phoneRegex = /^(0[3|5|7|8|9])+([0-9]{8})$/;
+
+                if (sdt.length > 0 && !phoneRegex.test(sdt)) {
+                    $(this).addClass('is-invalid');
+                } else if (sdt.length > 0) {
+                    $(this).removeClass('is-invalid').addClass('is-valid');
+                }
+            });
+
+            // Validate tiền cọc >= 0
+            $('#TienCoc').on('blur', function() {
+                var value = parseFloat($(this).val()) || 0;
+                if (value < 0) {
+                    $(this).val(0);
+                    alert('Tiền cọc không được âm!');
+                }
+                calculateTotal();
+            });
+
+            // Format tiền
+            $('#PhuPhi').on('blur', function() {
+                var value = parseFloat($(this).val()) || 0;
+                $(this).val(value);
+            });
+        });
+
+        function calculateTotal() {
+            var ngayNhan = new Date($('#NgayNhanXe').val());
+            var ngayTra = new Date($('#NgayTraXeDuKien').val());
+            var tienCoc = parseFloat($('#TienCoc').val()) || 0; // Lấy giá trị user nhập
+            var phuPhi = parseFloat($('#PhuPhi').val()) || 0;
+
+            if (ngayNhan && ngayTra && ngayTra > ngayNhan && giaThueNgay > 0) {
+                var soNgay = Math.ceil((ngayTra - ngayNhan) / (1000 * 60 * 60 * 24)) + 1;
+                var tienThue = soNgay * giaThueNgay;
+
+                // KHÔNG tự động tính tiền cọc nữa
+                var tongTien = tienThue + tienCoc + phuPhi;
+
+                // Cập nhật hiển thị
+                $('#soNgayThue').text(soNgay);
+                $('#tienThue').text(tienThue.toLocaleString('vi-VN'));
+                $('#tienCocDisplay').text(tienCoc.toLocaleString('vi-VN'));
+                $('#phuPhiDisplay').text(phuPhi.toLocaleString('vi-VN'));
+                $('#tongTien').text(tongTien.toLocaleString('vi-VN'));
+                $('#TongTienInput').val(tongTien);
+            } else {
+                // Reset về 0
+                $('#soNgayThue').text('0');
+                $('#tienThue').text('0');
+                $('#tienCocDisplay').text('0');
+                $('#phuPhiDisplay').text('0');
+                $('#tongTien').text('0');
+                $('#TongTienInput').val(0);
+            }
+        }
+    </script>
+}

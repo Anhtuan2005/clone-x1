@@ -1,0 +1,341 @@
+{
+  "Files": [
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\bike.bundle.scp.css",
+      "PackagePath": "staticwebassets\\bike.jcf6zzntv8.bundle.scp.css"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\css\\admin.css",
+      "PackagePath": "staticwebassets\\css\\admin.css"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\css\\animate.css",
+      "PackagePath": "staticwebassets\\css\\animate.css"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\css\\font-awesome.min.css",
+      "PackagePath": "staticwebassets\\css\\font-awesome.min.css"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\css\\homepage.css",
+      "PackagePath": "staticwebassets\\css\\homepage.css"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\css\\main.css",
+      "PackagePath": "staticwebassets\\css\\main.css"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\css\\prettyPhoto.css",
+      "PackagePath": "staticwebassets\\css\\prettyPhoto.css"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\css\\price-range.css",
+      "PackagePath": "staticwebassets\\css\\price-range.css"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\css\\responsive.css",
+      "PackagePath": "staticwebassets\\css\\responsive.css"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\images\\xe\\51d1f22c-c474-420e-b2cc-1d686c8feb95.jpg",
+      "PackagePath": "staticwebassets\\images\\xe\\51d1f22c-c474-420e-b2cc-1d686c8feb95.jpg"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\images\\xe\\f8b0729c-3dbf-41f0-9547-49c0631cf355.jpg",
+      "PackagePath": "staticwebassets\\images\\xe\\f8b0729c-3dbf-41f0-9547-49c0631cf355.jpg"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\js\\contact.js",
+      "PackagePath": "staticwebassets\\js\\contact.js"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\js\\gmaps.js",
+      "PackagePath": "staticwebassets\\js\\gmaps.js"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\js\\html5shiv.js",
+      "PackagePath": "staticwebassets\\js\\html5shiv.js"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\js\\jquery.js",
+      "PackagePath": "staticwebassets\\js\\jquery.js"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\js\\jquery.prettyPhoto.js",
+      "PackagePath": "staticwebassets\\js\\jquery.prettyPhoto.js"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\js\\jquery.scrollUp.min.js",
+      "PackagePath": "staticwebassets\\js\\jquery.scrollUp.min.js"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\js\\main.js",
+      "PackagePath": "staticwebassets\\js\\main.js"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\js\\price-range.js",
+      "PackagePath": "staticwebassets\\js\\price-range.js"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.bike.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.bike.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.bike.props",
+      "PackagePath": "build\\bike.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.bike.props",
+      "PackagePath": "buildMultiTargeting\\bike.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.bike.props",
+      "PackagePath": "buildTransitive\\bike.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

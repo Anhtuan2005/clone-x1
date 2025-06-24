@@ -1,0 +1,307 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A0CE8423-1F56-243C-CB99-FC8AA2F37EA5}|bike.csproj|e:\\new folder (3)\\aspnet-mvc-thuexe\\migrations\\20250615121815_addusertable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0CE8423-1F56-243C-CB99-FC8AA2F37EA5}|bike.csproj|solutionrelative:migrations\\20250615121815_addusertable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0CE8423-1F56-243C-CB99-FC8AA2F37EA5}|bike.csproj|e:\\new folder (3)\\aspnet-mvc-thuexe\\migrations\\20250615021825_themloaixe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0CE8423-1F56-243C-CB99-FC8AA2F37EA5}|bike.csproj|solutionrelative:migrations\\20250615021825_themloaixe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0CE8423-1F56-243C-CB99-FC8AA2F37EA5}|bike.csproj|e:\\new folder (3)\\aspnet-mvc-thuexe\\repository\\bikedbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0CE8423-1F56-243C-CB99-FC8AA2F37EA5}|bike.csproj|solutionrelative:repository\\bikedbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0CE8423-1F56-243C-CB99-FC8AA2F37EA5}|bike.csproj|e:\\new folder (3)\\aspnet-mvc-thuexe\\models\\datcho.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0CE8423-1F56-243C-CB99-FC8AA2F37EA5}|bike.csproj|solutionrelative:models\\datcho.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0CE8423-1F56-243C-CB99-FC8AA2F37EA5}|bike.csproj|e:\\new folder (3)\\aspnet-mvc-thuexe\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0CE8423-1F56-243C-CB99-FC8AA2F37EA5}|bike.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0CE8423-1F56-243C-CB99-FC8AA2F37EA5}|bike.csproj|e:\\new folder (3)\\aspnet-mvc-thuexe\\controllers\\datchocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0CE8423-1F56-243C-CB99-FC8AA2F37EA5}|bike.csproj|solutionrelative:controllers\\datchocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0CE8423-1F56-243C-CB99-FC8AA2F37EA5}|bike.csproj|e:\\new folder (3)\\aspnet-mvc-thuexe\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0CE8423-1F56-243C-CB99-FC8AA2F37EA5}|bike.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0CE8423-1F56-243C-CB99-FC8AA2F37EA5}|bike.csproj|e:\\new folder (3)\\aspnet-mvc-thuexe\\controllers\\loaixe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0CE8423-1F56-243C-CB99-FC8AA2F37EA5}|bike.csproj|solutionrelative:controllers\\loaixe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0CE8423-1F56-243C-CB99-FC8AA2F37EA5}|bike.csproj|e:\\new folder (3)\\aspnet-mvc-thuexe\\controllers\\quanlyhopdongcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0CE8423-1F56-243C-CB99-FC8AA2F37EA5}|bike.csproj|solutionrelative:controllers\\quanlyhopdongcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0CE8423-1F56-243C-CB99-FC8AA2F37EA5}|bike.csproj|e:\\new folder (3)\\aspnet-mvc-thuexe\\controllers\\quanlyuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0CE8423-1F56-243C-CB99-FC8AA2F37EA5}|bike.csproj|solutionrelative:controllers\\quanlyuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0CE8423-1F56-243C-CB99-FC8AA2F37EA5}|bike.csproj|e:\\new folder (3)\\aspnet-mvc-thuexe\\controllers\\xe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0CE8423-1F56-243C-CB99-FC8AA2F37EA5}|bike.csproj|solutionrelative:controllers\\xe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0CE8423-1F56-243C-CB99-FC8AA2F37EA5}|bike.csproj|e:\\new folder (3)\\aspnet-mvc-thuexe\\models\\hopdong.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0CE8423-1F56-243C-CB99-FC8AA2F37EA5}|bike.csproj|solutionrelative:models\\hopdong.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0CE8423-1F56-243C-CB99-FC8AA2F37EA5}|bike.csproj|e:\\new folder (3)\\aspnet-mvc-thuexe\\controllers\\baocaocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0CE8423-1F56-243C-CB99-FC8AA2F37EA5}|bike.csproj|solutionrelative:controllers\\baocaocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0CE8423-1F56-243C-CB99-FC8AA2F37EA5}|bike.csproj|e:\\new folder (3)\\aspnet-mvc-thuexe\\views\\baocao\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A0CE8423-1F56-243C-CB99-FC8AA2F37EA5}|bike.csproj|solutionrelative:views\\baocao\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0CE8423-1F56-243C-CB99-FC8AA2F37EA5}|bike.csproj|e:\\new folder (3)\\aspnet-mvc-thuexe\\migrations\\20250624003026_adddatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0CE8423-1F56-243C-CB99-FC8AA2F37EA5}|bike.csproj|solutionrelative:migrations\\20250624003026_adddatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0CE8423-1F56-243C-CB99-FC8AA2F37EA5}|bike.csproj|e:\\new folder (3)\\aspnet-mvc-thuexe\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A0CE8423-1F56-243C-CB99-FC8AA2F37EA5}|bike.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0CE8423-1F56-243C-CB99-FC8AA2F37EA5}|bike.csproj|e:\\new folder (3)\\aspnet-mvc-thuexe\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A0CE8423-1F56-243C-CB99-FC8AA2F37EA5}|bike.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "20250615121815_AddUserTable.cs",
+              "DocumentMoniker": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\Migrations\\20250615121815_AddUserTable.cs",
+              "RelativeDocumentMoniker": "Migrations\\20250615121815_AddUserTable.cs",
+              "ToolTip": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\Migrations\\20250615121815_AddUserTable.cs",
+              "RelativeToolTip": "Migrations\\20250615121815_AddUserTable.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T00:44:51.287Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "20250615021825_themloaixe.cs",
+              "DocumentMoniker": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\Migrations\\20250615021825_themloaixe.cs",
+              "RelativeDocumentMoniker": "Migrations\\20250615021825_themloaixe.cs",
+              "ToolTip": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\Migrations\\20250615021825_themloaixe.cs",
+              "RelativeToolTip": "Migrations\\20250615021825_themloaixe.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T00:44:23.481Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BikeDbContext.cs",
+              "DocumentMoniker": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\Repository\\BikeDbContext.cs",
+              "RelativeDocumentMoniker": "Repository\\BikeDbContext.cs",
+              "ToolTip": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\Repository\\BikeDbContext.cs",
+              "RelativeToolTip": "Repository\\BikeDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T00:44:20.506Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AccountController.cs",
+              "ToolTip": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Controllers\\AccountController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T00:40:13.635Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "HopDong.cs",
+              "DocumentMoniker": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\Models\\HopDong.cs",
+              "RelativeDocumentMoniker": "Models\\HopDong.cs",
+              "ToolTip": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\Models\\HopDong.cs",
+              "RelativeToolTip": "Models\\HopDong.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T00:38:55.748Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Xe.cs",
+              "DocumentMoniker": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\Controllers\\Xe.cs",
+              "RelativeDocumentMoniker": "Controllers\\Xe.cs",
+              "ToolTip": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\Controllers\\Xe.cs",
+              "RelativeToolTip": "Controllers\\Xe.cs",
+              "ViewState": "AgIAAEoBAAAAAAAAAAAiwAgAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T00:37:45.932Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "QuanLyUser.cs",
+              "DocumentMoniker": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\Controllers\\QuanLyUser.cs",
+              "RelativeDocumentMoniker": "Controllers\\QuanLyUser.cs",
+              "ToolTip": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\Controllers\\QuanLyUser.cs",
+              "RelativeToolTip": "Controllers\\QuanLyUser.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAL8AAABcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T00:37:43.693Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "LoaiXe.cs",
+              "DocumentMoniker": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\Controllers\\LoaiXe.cs",
+              "RelativeDocumentMoniker": "Controllers\\LoaiXe.cs",
+              "ToolTip": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\Controllers\\LoaiXe.cs",
+              "RelativeToolTip": "Controllers\\LoaiXe.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T00:37:04.991Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DatCho.cs",
+              "DocumentMoniker": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\Models\\DatCho.cs",
+              "RelativeDocumentMoniker": "Models\\DatCho.cs",
+              "ToolTip": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\Models\\DatCho.cs",
+              "RelativeToolTip": "Models\\DatCho.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T00:36:46.326Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "QuanLyHopDongController.cs",
+              "DocumentMoniker": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\Controllers\\QuanLyHopDongController.cs",
+              "RelativeDocumentMoniker": "Controllers\\QuanLyHopDongController.cs",
+              "ToolTip": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\Controllers\\QuanLyHopDongController.cs",
+              "RelativeToolTip": "Controllers\\QuanLyHopDongController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T00:37:39.062Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
+              "ToolTip": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T00:37:02.454Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DatChoController.cs",
+              "DocumentMoniker": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\Controllers\\DatChoController.cs",
+              "RelativeDocumentMoniker": "Controllers\\DatChoController.cs",
+              "ToolTip": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\Controllers\\DatChoController.cs",
+              "RelativeToolTip": "Controllers\\DatChoController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T00:37:00.315Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "BaoCaoController.cs",
+              "DocumentMoniker": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\Controllers\\BaoCaoController.cs",
+              "RelativeDocumentMoniker": "Controllers\\BaoCaoController.cs",
+              "ToolTip": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\Controllers\\BaoCaoController.cs",
+              "RelativeToolTip": "Controllers\\BaoCaoController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T00:36:53.617Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\Views\\BaoCao\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\BaoCao\\Index.cshtml",
+              "ToolTip": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\Views\\BaoCao\\Index.cshtml",
+              "RelativeToolTip": "Views\\BaoCao\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-24T00:36:38.495Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "20250624003026_adddatabase.cs",
+              "DocumentMoniker": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\Migrations\\20250624003026_adddatabase.cs",
+              "RelativeDocumentMoniker": "Migrations\\20250624003026_adddatabase.cs",
+              "ToolTip": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\Migrations\\20250624003026_adddatabase.cs",
+              "RelativeToolTip": "Migrations\\20250624003026_adddatabase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T00:30:27.032Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-24T00:26:31.327Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "E:\\New folder (3)\\ASPNET-MVC-ThueXe\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T00:26:27.021Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,158 @@
+﻿@model IEnumerable<bike.Models.User>
+
+@{
+    ViewData["Title"] = "Quản lý người dùng";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .page-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 15px;
+        margin-bottom: 30px;
+    }
+
+    .user-table {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    .role-badge {
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .role-admin {
+        background: #dc3545;
+        color: white;
+    }
+
+    .role-staff {
+        background: #17a2b8;
+        color: white;
+    }
+
+    .role-user {
+        background: #28a745;
+        color: white;
+    }
+
+    .status-active {
+        color: #28a745;
+    }
+
+    .status-inactive {
+        color: #dc3545;
+    }
+</style>
+
+<div class="container-fluid">
+    <!-- Header -->
+    <div class="page-header">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h1><i class="bi bi-people"></i> Quản lý người dùng</h1>
+                <p class="mb-0">Quản lý tài khoản và phân quyền người dùng</p>
+            </div>
+            <a asp-action="Create" class="btn btn-light">
+                <i class="bi bi-plus-circle"></i> Thêm người dùng
+            </a>
+        </div>
+    </div>
+
+    <!-- Success/Error messages -->
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show">
+            <i class="bi bi-check-circle"></i> @TempData["Success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show">
+            <i class="bi bi-exclamation-circle"></i> @TempData["Error"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <!-- Table -->
+    <div class="user-table">
+        <table class="table table-hover mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Họ tên</th>
+                    <th>Email</th>
+                    <th>Số điện thoại</th>
+                    <th>Vai trò</th>
+                    <th>Trạng thái</th>
+                    <th>Ngày tạo</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td>#@user.Id</td>
+                        <td>
+                            <strong>@user.Ten</strong>
+                        </td>
+                        <td>@user.Email</td>
+                        <td>@(user.SoDienThoai ?? "N/A")</td>
+                        <td>
+                            @{
+                                string roleClass = user.VaiTro switch
+                                {
+                                    "Admin" => "role-admin",
+                                    "Staff" => "role-staff",
+                                    _ => "role-user"
+                                };
+                                string roleText = user.VaiTro switch
+                                {
+                                    "Admin" => "Quản trị",
+                                    "Staff" => "Nhân viên",
+                                    _ => "Khách hàng"
+                                };
+                            }
+                            <span class="role-badge @roleClass">@roleText</span>
+                        </td>
+                        <td>
+                            @if (user.IsActive)
+                            {
+                                <i class="bi bi-check-circle status-active"></i>
+                                <span>Hoạt động</span>
+                            }
+                            else
+                            {
+                                <i class="bi bi-x-circle status-inactive"></i>
+                                <span>Khóa</span>
+                            }
+                        </td>
+                        <td>@user.NgayTao.ToString("dd/MM/yyyy")</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@user.Id"
+                               class="btn btn-sm btn-warning" title="Sửa">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            @if (user.Id != int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier).Value))
+                            {
+                                <a asp-action="Delete" asp-route-id="@user.Id"
+                                   class="btn btn-sm btn-danger" title="Xóa">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

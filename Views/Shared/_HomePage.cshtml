@@ -1,0 +1,260 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8" />
+    <link href="~/Content/homepage.css" rel="stylesheet" /> <!--Link CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> <!--Link Bootstrap 5-->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" /> <!--Link icon-->
+    <link href="~/css/homepage.css" rel="stylesheet">
+
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <i class="bi bi-clock"></i> THỜI GIAN LÀM VIỆC CHÍNH : 8H - 20H
+                </div>
+                <div class="col-md-6 text-end">
+                    <i class="bi bi-envelope"></i> Email : zzcz4991@gmail.com
+                    <span class="ms-3"><i class="bi bi-telephone"></i> Hotline : 0383407538</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logo Section -->
+    <div class="logo-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="d-flex align-items-center">
+                        <div style="background: #f0f0f0; padding: 10px; border-radius: 10px">
+                            <i class="bi bi-scooter"
+                               style="font-size: 40px; color: #0066cc"></i>
+                        </div>
+                        <div class="brand-name">CHO THUÊ XE MÁY SÀI GÒN</div>
+                    </div>
+                </div>
+                <div class="col-md-6 text-end">
+                    <!-- Giỏ hàng -->
+                    <a href="#" class="cart-btn me-3">
+                        <i class="bi bi-cart3"></i> GIỎ HÀNG
+                        <span>0 Sản phẩm</span>
+                    </a>
+                    <!-- Đăng nhập -->
+                    <a href="/Account/Login" class="login-btn">
+                        <i class="bi bi-person-circle"></i> Đăng nhập
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-house-door"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">GIỚI THIỆU</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle"
+                           href="#"
+                           id="navbarDropdown"
+                           role="button"
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            DANH SÁCH XE CHO THUÊ
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li class="dropdown-header">XE TAY GA</li>
+                            <li><a class="dropdown-item" href="#">Honda SH Mode</a></li>
+                            <li><a class="dropdown-item" href="#">Honda SH 125/150</a></li>
+                            <li><a class="dropdown-item" href="#">Honda Air Blade</a></li>
+                            <li><a class="dropdown-item" href="#">Honda Vision</a></li>
+                            <li><a class="dropdown-item" href="#">Honda Lead</a></li>
+                            <li><a class="dropdown-item" href="#">Yamaha NVX</a></li>
+                            <li><a class="dropdown-item" href="#">Yamaha Janus</a></li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li class="dropdown-header">XE SỐ</li>
+                            <li><a class="dropdown-item" href="#">Honda Wave Alpha</a></li>
+                            <li><a class="dropdown-item" href="#">Honda Wave RSX</a></li>
+                            <li><a class="dropdown-item" href="#">Honda Future</a></li>
+                            <li><a class="dropdown-item" href="#">Yamaha Sirius</a></li>
+                            <li><a class="dropdown-item" href="#">Yamaha Jupiter</a></li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li class="dropdown-header">XE CÔN TAY</li>
+                            <li>
+                                <a class="dropdown-item" href="#">Yamaha Exciter 150</a>
+                            </li>
+                            <li><a class="dropdown-item" href="#">Honda Winner 150</a></li>
+                            <li><a class="dropdown-item" href="#">Suzuki Raider 150</a></li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li>
+                                <a class="dropdown-item" href="#"><strong>Xem tất cả xe</strong></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">CHI NHÁNH</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">TUYỂN DỤNG</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">TIN TỨC</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">LIÊN HỆ</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    
+    @RenderBody()
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="bi bi-scooter"></i>
+                        </div>
+                        <h3 class="service-title">GIAO - TRẢ TẬN NƠI</h3>
+                        <p>Giao xe - Trả xe theo yêu cầu với phí Hạt Rẻ</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="bi bi-arrow-repeat"></i>
+                        </div>
+                        <h3 class="service-title">ĐỔI XE NẾU KHÔNG HÀI LÒNG</h3>
+                        <p>Đổi xe nhanh chóng nếu không hài lòng về chất lượng</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="bi bi-cart3"></i>
+                        </div>
+                        <h3 class="service-title">ĐẶT XE NHANH 24/7</h3>
+                        <p>Đặt xe trên Website, Zalo, Facebook nhanh chóng tiện lợi</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="bi bi-telephone"></i>
+                        </div>
+                        <h3 class="service-title">HỖ TRỢ KHI PHÁT SINH SỰ CỐ</h3>
+                        <p>Hỗ trợ nhanh khi có vấn đề xảy đến trong thời gian thuê</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div style="
+                background: white;
+                padding: 15px;
+                border-radius: 10px;
+                display: inline-block;
+                margin-bottom: 20px;
+              ">
+                        <i class="bi bi-scooter"
+                           style="font-size: 50px; color: #0066cc"></i>
+                    </div>
+                    <p>
+                        Công ty uy tín cho thuê xe máy tại TPHCM và các tỉnh lân cận. Với
+                        hơn 200 + đầu xe các loại. Chúng tôi tự hào là doanh nghiệp hàng
+                        đầu trong ngành cho thuê xe máy và được khách hàng đánh giá cao.
+                    </p>
+                    <p class="mt-3">
+                        Đối Tác SEO : đồng hồ đeo tay nam | máy lọc nước Yakyo
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <h3>CHÍNH SÁCH CHÚNG TÔI</h3>
+                    <ul>
+                        <li>Chính sách và quy định</li>
+                        <li>Quy Định Khi Thuê Xe</li>
+                        <li>Quy định về thanh toán</li>
+                        <li>Chính sách vận chuyển, giao nhận</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h3>CÔNG TY TNHH DỊCH VỤ XE TỐI XUÂN HẠNH</h3>
+                    <h2 class="footer-company-name">CHO THUÊ XE MÁY SÀI GÒN</h2>
+                    <div class="contact-info">
+                        <p>
+                            <i class="bi bi-geo-alt-fill"></i> Địa chỉ: 95/38 Nguyễn Văn
+                            Trỗi Phường 12 Quận Phú Nhuận TP.HCM
+                        </p>
+                        <p>
+                            <i class="bi bi-telephone-fill"></i> Điện thoại: 0908 630 065
+                        </p>
+                        <p>
+                            <i class="bi bi-envelope-fill"></i> Email:
+                            hanhduong.2006@yahoo.com
+                        </p>
+                        <p>
+                            <i class="bi bi-globe"></i> Email:
+                            https://chothuexemaysaigon.com
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Tab switching functionality
+        document.querySelectorAll(".tab-btn").forEach((btn) => {
+          btn.addEventListener("click", function () {
+            document
+              .querySelectorAll(".tab-btn")
+              .forEach((b) => b.classList.remove("active"));
+            this.classList.add("active");
+          });
+        });
+
+        // Sticky navbar with scroll effect
+        window.addEventListener("scroll", function () {
+          const navbar = document.querySelector(".navbar");
+          if (window.scrollY > 50) {
+            navbar.classList.add("scrolled");
+          } else {
+            navbar.classList.remove("scrolled");
+          }
+        });
+    </script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

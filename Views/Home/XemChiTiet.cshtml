@@ -1,0 +1,419 @@
+﻿@model bike.Models.Xe
+
+@{
+    ViewData["Title"] = $"Chi tiết {Model.TenXe}";
+    Layout = "~/Views/Shared/_HomePage.cshtml";
+}
+
+<style>
+    /* Breadcrumb */
+    .breadcrumb {
+        background-color: #f8f9fa;
+        padding: 20px 0;
+        margin-bottom: 30px;
+    }
+
+    .breadcrumb-item a {
+        color: #666;
+        text-decoration: none;
+    }
+
+    .breadcrumb-item.active {
+        color: #333;
+    }
+
+    /* Product Detail */
+    .product-detail {
+        padding: 40px 0;
+    }
+
+    .product-images {
+        text-align: center;
+    }
+
+    .main-image {
+        width: 100%;
+        max-height: 500px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    .thumbnail-container {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .thumbnail {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 5px;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: all 0.3s;
+    }
+
+        .thumbnail:hover,
+        .thumbnail.active {
+            border-color: #667eea;
+        }
+
+    /* Product Info */
+    h1 {
+        font-size: 28px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .share-btn {
+        background: #1877f2;
+        color: white;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+
+    .price-info {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    .price {
+        font-size: 32px;
+        font-weight: bold;
+        color: #ff0080;
+    }
+
+    .bike-specs {
+        margin-bottom: 20px;
+    }
+
+        .bike-specs p {
+            margin-bottom: 10px;
+        }
+
+    .rental-requirements {
+        margin-bottom: 30px;
+    }
+
+        .rental-requirements ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .rental-requirements li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+            .rental-requirements li:before {
+                content: "✓";
+                position: absolute;
+                left: 0;
+                color: #28a745;
+                font-weight: bold;
+            }
+
+    /* Action Buttons */
+    .action-buttons {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+
+    .btn-primary-custom {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: all 0.3s;
+        flex: 1;
+    }
+
+    .btn-secondary-custom {
+        background: #6c757d;
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: all 0.3s;
+        flex: 1;
+    }
+
+        .btn-primary-custom:hover,
+        .btn-secondary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+    /* Pricing Table */
+    .pricing-table {
+        margin-top: 50px;
+    }
+
+        .pricing-table h3 {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .pricing-table table {
+            width: 100%;
+            background: white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .pricing-table th {
+            background: #f8f9fa;
+            padding: 20px;
+            font-weight: bold;
+            text-align: center;
+            border: none;
+        }
+
+        .pricing-table td {
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #f0f0f0;
+        }
+
+    .blue-text {
+        color: #0066ff;
+        font-size: 14px;
+        font-weight: normal;
+    }
+
+    .red-text {
+        color: #dc3545;
+        font-weight: bold;
+    }
+
+    .text-muted {
+        color: #6c757d;
+        font-size: 14px;
+    }
+</style>
+
+<!-- Breadcrumb -->
+<nav aria-label="breadcrumb" class="breadcrumb">
+    <div class="container">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Trang chủ</a></li>
+            <li class="breadcrumb-item"><a href="#">Sản phẩm</a></li>
+            <li class="breadcrumb-item active" aria-current="page">
+                Cho Thuê Xe @Model.TenXe
+            </li>
+        </ol>
+    </div>
+</nav>
+
+<!-- Product Detail Section -->
+<section class="product-detail">
+    <div class="container">
+        <div class="row">
+            <!-- Product Images -->
+            <div class="col-lg-6">
+                <div class="product-images">
+                    @if (!string.IsNullOrEmpty(Model.HinhAnhXe))
+                    {
+                        <img src="/images/xe/@Model.HinhAnhXe" alt="@Model.TenXe" class="main-image" id="mainImage" />
+                    }
+                    else
+                    {
+                        <img src="/images/default.jpg" alt="@Model.TenXe" class="main-image" id="mainImage" />
+                    }
+
+                    <div class="thumbnail-container">
+                        <img src="@(!string.IsNullOrEmpty(Model.HinhAnhXe) ? $"/images/xe/{Model.HinhAnhXe}" : "/images/default.jpg")"
+                             alt="View 1" class="thumbnail active" onclick="changeImage(this.src)" />
+                        <!-- Thêm các ảnh khác nếu có -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Info -->
+            <div class="col-lg-6">
+                <h1>CHO THUÊ XE @Model.TenXe?.ToUpper()</h1>
+                <button class="share-btn">
+                    <i class="bi bi-facebook"></i> Chia sẻ
+                </button>
+
+                <div class="price-info">
+                    <p class="mb-1">
+                        Giá thuê từ: <span class="price">@Model.GiaThue.ToString("N0") vnđ / ngày</span>
+                    </p>
+                </div>
+
+                <div class="bike-specs">
+                    <p><strong>Hãng xe:</strong> @Model.HangXe</p>
+                    <p><strong>Dòng xe:</strong> @Model.DongXe</p>
+                    <p><strong>Loại xe:</strong> @Model.LoaiXe?.TenLoaiXe</p>
+                    <p>
+                        <strong>Trạng thái:</strong>
+                        @if (Model.TrangThai == "Sẵn sàng")
+                        {
+                            <span class="badge bg-success">@Model.TrangThai</span>
+                        }
+                        else if (Model.TrangThai == "Đang thuê")
+                        {
+                            <span class="badge bg-warning">@Model.TrangThai</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">@Model.TrangThai</span>
+                        }
+                    </p>
+                </div>
+
+                <div class="rental-requirements">
+                    <p class="mb-3">
+                        <i class="bi bi-check-square-fill"></i> Thủ Tục : CCCD đủ 18 tuổi giấy tờ tùy thân khác có ảnh (GPLX , Passport...)
+                        <i class="bi bi-telephone-fill"></i> Hotline: 0908.428.642 / 0908.630.065
+                    </p>
+                </div>
+
+                <div class="action-buttons">
+                    @if (Model.TrangThai == "Sẵn sàng")
+                    {
+                        
+                        <button class="btn-secondary-custom" onclick="datGiuXe(@Model.MaXe)">ĐẶT GIỮ XE</button>
+                    }
+                    else
+                    {
+                        <button class="btn-secondary-custom" disabled>XE ĐANG ĐƯỢC THUÊ</button>
+                    }
+                </div>
+
+                <div class="rental-requirements">
+                    <ul>
+                        <li>Người dưới 18 tuổi không được phép thuê xe</li>
+                        <li>Khi thuê xe bạn được sẵn 2 mũ nếu yêu cầu (mặc định là 1)</li>
+                        <li>Bắt buộc phải cọc thẻ chân khi nhận xe. Cty hoàn đủ cọc khi trả xe (Có thể thương lượng trước)</li>
+                        <li>Giao xe tận nơi (8h-20h) trong sài gòn (Có phí) để nv di grab về (Có thương lượng trước), sau khung giờ trên KH vui lòng đến thuê hoặc trả xe tại cty</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pricing Table -->
+        <div class="pricing-table">
+            <h3>BẢNG GIÁ THUÊ CỤ THỂ - ( MOTORBIKE RENTAL INFORMATION )</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Thời Gian Thuê<br /><span class="blue-text">(To rent - Time)</span>
+                        </th>
+                        <th>
+                            Giá Thuê<br /><span class="blue-text">(Price to rent)</span>
+                        </th>
+                        <th>
+                            Thủ Tục<br /><span class="blue-text">(Procedure to rent)</span>
+                        </th>
+                        <th>
+                            Tiền Thế Chân<br /><span class="blue-text">(Down payment)</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            Từ 1 đến 2 ngày<br /><span class="text-muted">(1 to 2 days)</span>
+                        </td>
+                        <td>
+                            @((Model.GiaThue * 1.2m).ToString("N0")) / ngày<br />
+                            <span class="text-muted">(@((Model.GiaThue * 1.2m).ToString("N0")) / day)</span>
+                        </td>
+                        <td rowspan="3">
+                            Công ty sẽ giữ (bản chính) một trong những giấy tờ tùy thân có ảnh sau :<br />
+                            <span class="red-text">CMND , GPLX , hộ chiếu</span><br />
+                            <span class="text-muted">(Personal Certificate)</span><br />
+                            <span class="blue-text">Passport</span>
+                        </td>
+                        <td rowspan="3">
+                            <span class="blue-text">Từ 1 Triệu (Bắt buộc) để nhận xe</span><br />
+                            Hoàn trả tiền thế chân sau khi kết thúc hợp đồng thuê<br />
+                            <span class="blue-text">To 1.000.000 VND</span><br />
+                            <span class="text-muted">(commitment to refund)</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Từ 3 đến dưới 25 ngày<br /><span class="text-muted">(3 to 25 days)</span>
+                        </td>
+                        <td>
+                            @Model.GiaThue.ToString("N0") / ngày<br />
+                            <span class="text-muted">(@Model.GiaThue.ToString("N0") / day)</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Trọn 1 tháng<br /><span class="text-muted">(Full Month)</span>
+                        </td>
+                        <td>
+                            @((Model.GiaThue * 0.8m).ToString("N0")) / ngày<br />
+                            <span class="text-muted">(@((Model.GiaThue * 0.8m).ToString("N0")) / day)</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Xe liên quan -->
+        @if (ViewBag.XeLienQuan != null && ((List<bike.Models.Xe>)ViewBag.XeLienQuan).Any())
+        {
+            <div class="related-bikes mt-5">
+                <h3 class="mb-4">Xe cùng loại</h3>
+                <div class="row">
+                    @foreach (var xe in (List<bike.Models.Xe>)ViewBag.XeLienQuan)
+                    {
+                        <div class="col-md-3">
+                            <a asp-action="XemChiTiet" asp-route-id="@xe.MaXe" class="text-decoration-none">
+                                <div class="bike-card">
+                                    <img src="@(!string.IsNullOrEmpty(xe.HinhAnhXe) ? $"/images/xe/{xe.HinhAnhXe}" : "/images/default.jpg")"
+                                         alt="@xe.TenXe" class="w-100" style="height: 200px; object-fit: cover;">
+                                    <div class="p-3">
+                                        <h5>@xe.TenXe</h5>
+                                        <p class="text-danger fw-bold">@xe.GiaThue.ToString("N0")đ/ngày</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        // Thay đổi ảnh chính
+        function changeImage(src) {
+            document.getElementById('mainImage').src = src;
+
+            // Update active thumbnail
+            document.querySelectorAll('.thumbnail').forEach(img => {
+                img.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+        // Đặt giữ xe
+        function datGiuXe(maXe) {
+            // Chuyển đến form đặt giữ chỗ
+            window.location.href = '@Url.Action("Create", "DatCho", new { id = Model.MaXe })';
+        }    </script>
+}

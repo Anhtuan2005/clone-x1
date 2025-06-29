@@ -1,0 +1,18 @@
+﻿@model bike.Models.LoaiXe
+
+@{
+    ViewData["Title"] = "Thêm loại xe mới";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="TenLoaiXe"></label>
+        <input asp-for="TenLoaiXe" class="form-control" />
+        <span asp-validation-for="TenLoaiXe" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-success">Lưu</button>
+    <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+</form>
+

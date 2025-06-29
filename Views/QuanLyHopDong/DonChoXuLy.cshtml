@@ -1,0 +1,406 @@
+﻿@model IEnumerable<bike.Models.DatCho>
+
+@{
+    ViewData["Title"] = "Đơn Chờ Xử Lý";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .page-header {
+        background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 15px;
+        margin-bottom: 30px;
+    }
+
+    .filter-section {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        margin-bottom: 30px;
+    }
+
+    .order-card {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        transition: all 0.3s;
+    }
+
+        .order-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+        }
+
+    .order-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        margin-bottom: 15px;
+    }
+
+    .order-number {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .order-date {
+        color: #666;
+        font-size: 14px;
+    }
+
+    .order-body {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-bottom: 15px;
+    }
+
+    .info-group {
+        border-left: 3px solid #007bff;
+        padding-left: 15px;
+    }
+
+    .info-label {
+        color: #666;
+        font-size: 12px;
+        text-transform: uppercase;
+        margin-bottom: 5px;
+    }
+
+    .info-value {
+        color: #333;
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    .order-actions {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px solid #eee;
+    }
+
+    .btn-process {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+    }
+
+        .btn-process:hover {
+            color: white;
+            transform: translateY(-2px);
+        }
+
+    .btn-cancel {
+        background: #dc3545;
+        color: white;
+        border: none;
+    }
+
+        .btn-cancel:hover {
+            background: #c82333;
+            color: white;
+        }
+
+    .status-badge {
+        display: inline-block;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 12px;
+        background: #fff3cd;
+        color: #856404;
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        background: white;
+        border-radius: 10px;
+    }
+
+    .empty-icon {
+        font-size: 64px;
+        color: #ccc;
+        margin-bottom: 20px;
+    }
+</style>
+
+<div class="container-fluid">
+    <!-- Header -->
+    <div class="page-header">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h1><i class="bi bi-hourglass-split"></i> Đơn Chờ Xử Lý</h1>
+                <p class="mb-0">Có @ViewBag.TongDonCho đơn cần xử lý</p>
+            </div>
+            <a asp-action="Index" class="btn btn-light">
+                <i class="bi bi-arrow-left"></i> Quay lại
+            </a>
+        </div>
+    </div>
+
+    <!-- Filter -->
+    <div class="filter-section">
+        <form method="get" class="row g-3">
+            <div class="col-md-4">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-search"></i></span>
+                    <input type="text" name="searchString" class="form-control"
+                           placeholder="Tìm theo tên, SĐT, email..."
+                           value="@ViewBag.SearchString" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <input type="date" name="tuNgay" class="form-control"
+                       value="@ViewBag.TuNgay?.ToString("yyyy-MM-dd")"
+                       placeholder="Từ ngày" />
+            </div>
+            <div class="col-md-3">
+                <input type="date" name="denNgay" class="form-control"
+                       value="@ViewBag.DenNgay?.ToString("yyyy-MM-dd")"
+                       placeholder="Đến ngày" />
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary w-100">
+                    <i class="bi bi-funnel"></i> Lọc
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Danh sách đơn -->
+    @if (Model.Any())
+    {
+        @foreach (var don in Model)
+        {
+            <div class="order-card">
+                <div class="order-header">
+                    <div>
+                        <div class="order-number">Đơn #DC@(don.MaDatCho.ToString("D6"))</div>
+                        <div class="order-date">
+                            <i class="bi bi-clock"></i> @don.NgayDat.ToString("dd/MM/yyyy HH:mm")
+                        </div>
+                    </div>
+                    <span class="status-badge">
+                        <i class="bi bi-hourglass"></i> @don.TrangThai
+                    </span>
+                </div>
+
+                <div class="order-body">
+                    <div class="info-group">
+                        <div class="info-label">Khách hàng</div>
+                        <div class="info-value">@don.HoTen</div>
+                        <div class="text-muted small">
+                            <i class="bi bi-telephone"></i> @don.SoDienThoai<br />
+                            <i class="bi bi-envelope"></i> @don.Email
+                        </div>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">Xe thuê</div>
+                        <div class="info-value">@don.Xe?.TenXe</div>
+                        <div class="text-muted small">
+                            Biển số: @don.Xe?.BienSoXe<br />
+                            Giá: <span class="text-danger">@don.Xe?.GiaThue.ToString("N0")đ/ngày</span>
+                        </div>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">Thời gian thuê</div>
+                        <div class="info-value">@don.SoNgayThue ngày</div>
+                        <div class="text-muted small">
+                            Từ: @don.NgayNhanXe.ToString("dd/MM/yyyy")<br />
+                            Đến: @don.NgayTraXe.ToString("dd/MM/yyyy")
+                        </div>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-label">Tổng tiền dự kiến</div>
+                        <div class="info-value text-danger">@don.TongTienDuKien.ToString("N0")đ</div>
+                    </div>
+                </div>
+
+                @if (!string.IsNullOrEmpty(don.GhiChu))
+                {
+                    <div class="alert alert-info mb-3">
+                        <i class="bi bi-info-circle"></i> Ghi chú: @don.GhiChu
+                    </div>
+                }
+
+                <div class="order-actions">
+                    <button class="btn btn-info btn-sm" onclick="xemChiTiet(@don.MaDatCho)">
+                        <i class="bi bi-eye"></i> Chi tiết
+                    </button>
+                    <form asp-action="XuLyDon" method="post" class="d-inline"
+                          onsubmit="return confirm('Xác nhận xử lý đơn này và tạo hợp đồng?');">
+                        <input type="hidden" name="id" value="@don.MaDatCho" />
+                        <button type="submit" class="btn btn-process btn-sm">
+                            <i class="bi bi-check-circle"></i> Xử lý & Tạo HĐ
+                        </button>
+                    </form>
+                    <button class="btn btn-cancel btn-sm" onclick="huyDon(@don.MaDatCho)">
+                        <i class="bi bi-x-circle"></i> Hủy đơn
+                    </button>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="empty-state">
+            <i class="bi bi-inbox empty-icon"></i>
+            <h3>Không có đơn chờ xử lý</h3>
+            <p class="text-muted">Tất cả các đơn đã được xử lý hoặc không có đơn nào phù hợp với bộ lọc.</p>
+            <a asp-action="Index" class="btn btn-primary mt-3">
+                <i class="bi bi-arrow-left"></i> Quay lại trang chính
+            </a>
+        </div>
+    }
+</div>
+
+<!-- Modal Hủy đơn -->
+<div class="modal fade" id="huyDonModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Hủy đơn đặt chỗ</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="huyDonForm">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" id="maDatChoHuy" />
+                    <div class="mb-3">
+                        <label class="form-label">Lý do hủy <span class="text-danger">*</span></label>
+                        <textarea id="lyDoHuy" class="form-control" rows="3"
+                                  placeholder="Nhập lý do hủy đơn..." required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-danger" onclick="xacNhanHuyDon()">
+                    <i class="bi bi-x-circle"></i> Xác nhận hủy
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Chi tiết -->
+<div class="modal fade" id="chiTietModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Chi tiết đơn đặt chỗ</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="chiTietContent">
+                <!-- Nội dung chi tiết sẽ được load ở đây -->
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            console.log('Page loaded - jQuery version:', $.fn.jquery);
+
+            // Khởi tạo toastr nếu chưa có
+            if (typeof toastr === 'undefined') {
+                window.toastr = {
+                    success: function(msg) { alert('Success: ' + msg); },
+                    error: function(msg) { alert('Error: ' + msg); }
+                };
+            }
+        });
+
+        function huyDon(maDatCho) {
+            console.log('Huy don clicked:', maDatCho);
+
+            // Set giá trị
+            $('#maDatChoHuy').val(maDatCho);
+            $('#lyDoHuy').val('');
+
+            // Hiển thị modal
+            var myModal = new bootstrap.Modal(document.getElementById('huyDonModal'));
+            myModal.show();
+        }
+
+        function xacNhanHuyDon() {
+            var maDatCho = $('#maDatChoHuy').val();
+            var lyDoHuy = $('#lyDoHuy').val().trim();
+
+            if (!lyDoHuy) {
+                alert('Vui lòng nhập lý do hủy!');
+                return;
+            }
+
+            // Hiển thị loading
+            var btn = $('.modal-footer .btn-danger');
+            var originalText = btn.html();
+            btn.html('<span class="spinner-border spinner-border-sm"></span> Đang xử lý...').prop('disabled', true);
+
+            $.ajax({
+                url: '@Url.Action("HuyDon", "QuanLyHopDong")',
+                type: 'POST',
+                data: {
+                    id: maDatCho,
+                    lyDoHuy: lyDoHuy,
+                    __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+                },
+                success: function(response) {
+                    if (response.success) {
+                        toastr.success(response.message);
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
+                    } else {
+                        toastr.error(response.message);
+                        btn.html(originalText).prop('disabled', false);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    toastr.error('Có lỗi xảy ra: ' + error);
+                    btn.html(originalText).prop('disabled', false);
+                },
+                complete: function() {
+                    bootstrap.Modal.getInstance(document.getElementById('huyDonModal')).hide();
+                }
+            });
+        }
+
+        function xemChiTiet(maDatCho) {
+            console.log('Xem chi tiet clicked:', maDatCho);
+
+            // Hiển thị loading
+            $('#chiTietContent').html('<div class="text-center p-4"><div class="spinner-border"></div><p class="mt-2">Đang tải...</p></div>');
+
+            // Hiển thị modal
+            var myModal = new bootstrap.Modal(document.getElementById('chiTietModal'));
+            myModal.show();
+
+            // Load nội dung
+            $.ajax({
+                url: '@Url.Action("ChiTietDonCho", "QuanLyHopDong")',
+                type: 'GET',
+                data: { id: maDatCho },
+                success: function(data) {
+                    $('#chiTietContent').html(data);
+                },
+                error: function(xhr, status, error) {
+                    $('#chiTietContent').html('<div class="alert alert-danger">Không thể tải chi tiết. Lỗi: ' + error + '</div>');
+                }
+            });
+        }
+    </script>
+}

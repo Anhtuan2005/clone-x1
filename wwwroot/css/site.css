@@ -1,0 +1,233 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Đảm bảo html và body chiếm 100% không có margin, không có viền */
+html, body {
+    width: 100%;
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden; /* QUAN TRỌNG: Không cho phép cửa sổ chính cuộn */
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: linear-gradient(135deg, #7dd3fc 0%, #10b981 100%);
+}
+
+.left-section {
+    flex: 1;
+    background: linear-gradient(135deg, #069494 0%, #10b981 100%);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+}
+
+.car-image {
+    width: 600px;
+    height: auto;
+    max-width: none;
+    position: relative;
+    z-index: 10;
+    transform: translateX(100px);
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2));
+}
+
+.right-section {
+    flex: 1;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 20px 0 20px 120px;
+    overflow-y: auto; /* Chỉ cho phép cuộn bên trong khung trắng này khi cần */
+}
+
+.login-form {
+    width: 100%;
+    max-width: 420px;
+    padding: 20px; /* Giảm padding một chút để vừa hơn */
+    background: #fff;
+    border-radius: 18px;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Các style còn lại giữ nguyên như cũ... */
+
+.form-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.form-subtitle {
+    color: #4b5563;
+    text-align: center;
+    margin-bottom: 30px;
+    line-height: 1.5;
+    font-size: 15px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 15px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 16px;
+    background: #f9f9f9;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(16,185,129,.04);
+}
+
+    .form-input:focus {
+        outline: none;
+        border-color: #10b981;
+        background: #fff;
+        box-shadow: 0 0 0 2px #a7f3d0;
+    }
+
+.login-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(90deg, #10b981 0%, #3b82f6 100%);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    margin-bottom: 18px;
+    box-shadow: 0 4px 16px rgba(16,185,129,.10);
+}
+
+    .login-btn:hover {
+        background: linear-gradient(90deg, #3b82f6 0%, #10b981 100%);
+        transform: translateY(-2px) scale(1.03);
+    }
+
+.form-links {
+    justify-content: center;
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.form-link {
+    color: #10b981;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+    .form-link:hover {
+        color: #059669;
+        text-decoration: underline;
+    }
+
+.signup-link {
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+}
+
+    .signup-link a {
+        color: #10b981;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s;
+    }
+
+        .signup-link a:hover {
+            color: #059669;
+            text-decoration: underline;
+        }
+
+.text-danger {
+    color: #ef4444;
+    font-size: 13px;
+    margin-top: -14px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .car-image {
+        width: 500px;
+        transform: translateX(80px);
+    }
+
+    .right-section {
+        padding-left: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .left-section {
+        height: 35vh;
+        min-height: 250px;
+        justify-content: center;
+        padding-right: 0;
+        flex: none;
+    }
+
+    .car-image {
+        width: 300px;
+        transform: translateX(0) translateY(20px);
+    }
+
+    .right-section {
+        height: auto;
+        padding: 20px;
+        flex: 1;
+        overflow-y: auto;
+    }
+
+    .login-form {
+        padding: 20px;
+        margin: 0;
+    }
+
+    .form-title {
+        font-size: 24px;
+    }
+
+    .form-subtitle {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .car-image {
+        width: 250px;
+    }
+
+    .login-form {
+        padding: 15px;
+    }
+
+    .form-title {
+        font-size: 22px;
+    }
+}

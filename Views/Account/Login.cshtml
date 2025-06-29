@@ -1,0 +1,52 @@
+﻿@model bike.ViewModels.LoginViewModel
+@{
+    ViewData["Title"] = "Đăng Nhập";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Bike Rental</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="container">
+        <div class="left-section">
+            <img src="~/images/motorcycle.png" alt="motorcycle" class="car-image">
+        </div>
+        <div class="right-section">
+            <div class="login-form">
+                <h2 class="form-title">Chào mừng bạn đã quay trở lại</h2>
+                <p class="form-subtitle">Trước khi bắt đầu tìm hiểu về dịch vụ của chúng tôi, vui lòng bạn đăng nhập vào tài khoản</p>
+
+                <form asp-action="Login" method="post">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <input asp-for="Email" class="form-input" placeholder="Email" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="MatKhau" class="form-input" type="password" placeholder="Mật khẩu" />
+                        <span asp-validation-for="MatKhau" class="text-danger"></span>
+                    </div>
+
+                    <button type="submit" class="login-btn">Đăng nhập</button>
+
+                    <div class="form-links">
+                        <a href="#" class="form-link">Quên mật khẩu?</a>
+                    </div>
+                    <div class="signup-link">
+                        Thành viên mới? <a asp-action="Register" asp-controller="Account">Đăng kí</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <partial name="_ValidationScriptsPartial" />
+</body>
+</html>

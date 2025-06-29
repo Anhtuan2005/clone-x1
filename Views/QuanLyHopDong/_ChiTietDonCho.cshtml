@@ -1,0 +1,107 @@
+﻿@model bike.Models.DatCho
+
+@if (Model == null)
+{
+    <div class="alert alert-danger">Không tìm thấy thông tin đơn đặt chỗ!</div>
+}
+else
+{
+    <div class="detail-container">
+        <div class="row">
+            <div class="col-md-6">
+                <h6 class="text-primary mb-3"><i class="bi bi-person"></i> Thông tin khách hàng</h6>
+                <table class="table table-borderless">
+                    <tr>
+                        <td class="text-muted">Họ tên:</td>
+                        <td><strong>@Model.HoTen</strong></td>
+                    </tr>
+                    <tr>
+                        <td class="text-muted">Số điện thoại:</td>
+                        <td>@Model.SoDienThoai</td>
+                    </tr>
+                    <tr>
+                        <td class="text-muted">Email:</td>
+                        <td>@Model.Email</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col-md-6">
+                <h6 class="text-primary mb-3"><i class="bi bi-bicycle"></i> Thông tin xe</h6>
+                <table class="table table-borderless">
+                    <tr>
+                        <td class="text-muted">Tên xe:</td>
+                        <td><strong>@(Model.Xe?.TenXe ?? "N/A")</strong></td>
+                    </tr>
+                    <tr>
+                        <td class="text-muted">Biển số:</td>
+                        <td>@(Model.Xe?.BienSoXe ?? "N/A")</td>
+                    </tr>
+                    <tr>
+                        <td class="text-muted">Giá thuê:</td>
+                        <td class="text-danger">@(Model.Xe?.GiaThue.ToString("N0") ?? "0")đ/ngày</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="row">
+            <div class="col-md-6">
+                <h6 class="text-primary mb-3"><i class="bi bi-calendar"></i> Thời gian thuê</h6>
+                <table class="table table-borderless">
+                    <tr>
+                        <td class="text-muted">Ngày nhận:</td>
+                        <td><strong>@Model.NgayNhanXe.ToString("dd/MM/yyyy")</strong></td>
+                    </tr>
+                    <tr>
+                        <td class="text-muted">Ngày trả:</td>
+                        <td><strong>@Model.NgayTraXe.ToString("dd/MM/yyyy")</strong></td>
+                    </tr>
+                    <tr>
+                        <td class="text-muted">Số ngày:</td>
+                        <td>@Model.SoNgayThue ngày</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col-md-6">
+                <h6 class="text-primary mb-3"><i class="bi bi-info-circle"></i> Thông tin khác</h6>
+                <table class="table table-borderless">
+                    <tr>
+                        <td class="text-muted">Mã đơn:</td>
+                        <td><strong>#DC@(Model.MaDatCho.ToString("D6"))</strong></td>
+                    </tr>
+                    <tr>
+                        <td class="text-muted">Ngày đặt:</td>
+                        <td>@Model.NgayDat.ToString("dd/MM/yyyy HH:mm")</td>
+                    </tr>
+                    <tr>
+                        <td class="text-muted">Tổng tiền:</td>
+                        <td class="text-danger"><strong>@Model.TongTienDuKien.ToString("N0")đ</strong></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        @if (!string.IsNullOrEmpty(Model.GhiChu))
+        {
+            <hr />
+            <div>
+                <h6 class="text-primary mb-3"><i class="bi bi-chat-left-text"></i> Ghi chú</h6>
+                <p class="mb-0">@Model.GhiChu</p>
+            </div>
+        }
+    </div>
+}
+
+<style>
+    .detail-container {
+        padding: 10px;
+    }
+
+    .table-borderless td {
+        padding: 8px 4px;
+    }
+</style>

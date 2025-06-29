@@ -1,0 +1,33 @@
+﻿@model bike.Models.ChiTieu
+
+@{
+    ViewData["Title"] = "Chi tiết";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h4 class="m-0 font-weight-bold" style="color: #764ba2;">Chi tiết khoản chi</h4>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.NoiDung)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.NoiDung)</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.SoTien)</dt>
+                <dd class="col-sm-9 text-danger fw-bold">@Model.SoTien.ToString("N0")đ</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.NgayChi)</dt>
+                <dd class="col-sm-9">@Model.NgayChi.ToString("dd/MM/yyyy")</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.GhiChu)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.GhiChu)</dd>
+            </dl>
+        </div>
+        <div class="card-footer">
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning"><i class="bi bi-pencil-square me-2"></i>Sửa</a>
+            <a asp-action="Index" class="btn btn-secondary">Quay lại danh sách</a>
+        </div>
+    </div>
+</div>

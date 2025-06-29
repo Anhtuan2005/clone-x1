@@ -1,0 +1,61 @@
+﻿@model bike.ViewModels.RegisterViewModel
+@{
+    ViewData["Title"] = "Đăng Ký";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Bike Rental</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="container">
+        <div class="left-section">
+            <img src="~/images/motorcycle.png" alt="motorcycle" class="car-image">
+        </div>
+        <div class="right-section">
+            <div class="login-form">
+                <h2 class="form-title">Tạo tài khoản mới</h2>
+                <p class="form-subtitle">Xin vui lòng điền thông tin để bắt đầu sử dụng dịch vụ của chúng tôi</p>
+
+                <form asp-action="Register" method="post">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <input asp-for="Ten" class="form-input" placeholder="Họ và tên" />
+                        <span asp-validation-for="Ten" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Email" class="form-input" placeholder="Email" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="SoDienThoai" class="form-input" placeholder="Số điện thoại (tùy chọn)" />
+                        <span asp-validation-for="SoDienThoai" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="MatKhau" type="password" class="form-input" placeholder="Mật khẩu" />
+                        <span asp-validation-for="MatKhau" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="XacNhanMatKhau" type="password" class="form-input" placeholder="Xác nhận mật khẩu" />
+                        <span asp-validation-for="XacNhanMatKhau" class="text-danger"></span>
+                    </div>
+
+                    <button type="submit" class="login-btn">Đăng ký</button>
+
+                    <div class="signup-link">
+                        Đã có tài khoản? <a asp-action="Login" asp-controller="Account">Đăng nhập</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <partial name="_ValidationScriptsPartial" />
+</body>
+</html>

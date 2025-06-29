@@ -1,0 +1,149 @@
+﻿@model bike.Models.ChiTieu
+
+@{
+    ViewData["Title"] = "Chỉnh sửa chi tiêu";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h4 class="m-0 font-weight-bold" style="color: #764ba2;">Chỉnh sửa khoản chi</h4>
+        </div>
+        <div class="card-body">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+
+                <div class="mb-3">
+                    <label asp-for="NoiDung" class="form-label"></label>
+                    <input asp-for="NoiDung" class="form-control" />
+                    <span asp-validation-for="NoiDung" class="text-danger"></span>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="SoTien" class="form-label"></label>
+                        <!-- Ô hiển thị cho người dùng nhập liệu -->
+                        <input type="text" id="soTienDisplay" class="form-control" placeholder="Ví dụ: 2 triệu 500 ngàn" />
+                        <!-- Ô ẩn để lưu giá trị số gửi đi -->
+                        <input asp-for="SoTien" type="hidden" />
+                        <!-- Phản hồi cho người dùng -->
+                        <small id="soTienFeedback" class="form-text text-muted"></small>
+                        <span asp-validation-for="SoTien" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="MaXe" class="form-label">Gắn với xe (tùy chọn)</label>
+                        <select asp-for="MaXe" class="form-control" asp-items="ViewBag.MaXe">
+                            <option value="">-- Không chọn --</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="NgayChi" class="form-label"></label>
+                    <input asp-for="NgayChi" class="form-control" value="@Model.NgayChi.ToString("yyyy-MM-dd")" type="date" />
+                    <span asp-validation-for="NgayChi" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="GhiChu" class="form-label"></label>
+                    <textarea asp-for="GhiChu" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="GhiChu" class="text-danger"></span>
+                </div>
+
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle me-2"></i>Lưu thay đổi</button>
+                    <a asp-action="Index" class="btn btn-secondary">Quay lại danh sách</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $(document).ready(function () {
+            // Chỉ chạy trên trang Edit: Khởi tạo giá trị ban đầu khi tải trang
+            if ($('form[action*="/Edit/"]').length > 0) {
+                 var initialValue = $('#SoTien').val();
+                if(initialValue && initialValue > 0) {
+                    var formattedValue = new Intl.NumberFormat('vi-VN').format(initialValue);
+                    $('#soTienDisplay').val(formattedValue);
+                    $('#soTienFeedback').text('Giá trị số: ' + formattedValue + ' đ').addClass('text-success');
+                }
+            }
+
+            $('#soTienDisplay').on('input', function () {
+                var rawValue = $(this).val();
+                var numericValue = parseVietnameseCurrency(rawValue);
+
+                if (numericValue !== null && !isNaN(numericValue)) {
+                    $('#SoTien').val(numericValue);
+                    $('#soTienFeedback').text('Giá trị số: ' + new Intl.NumberFormat('vi-VN').format(numericValue) + ' đ');
+                    $('#soTienFeedback').removeClass('text-danger').addClass('text-success');
+                } else {
+                    $('#SoTien').val('');
+                    if(rawValue.trim() !== '') {
+                        $('#soTienFeedback').text('Định dạng không hợp lệ');
+                        $('#soTienFeedback').removeClass('text-success').addClass('text-danger');
+                    } else {
+                        $('#soTienFeedback').text('');
+                    }
+                }
+            });
+
+            /**
+             * [PHIÊN BẢN 4 - SỬA LỖI]
+             */
+            function parseVietnameseCurrency(str) {
+                // 1. Chuẩn hóa đầu vào
+                let cleanStr = (str || '').toString().toLowerCase()
+                    .replace(/đồng|đ/g, '')
+                    .replace(/tr/g, 'triệu')
+                    .replace(/k/g, 'ngàn')
+                    .replace(/rưỡi/g, '.5')
+                    .trim();
+
+                // 2. TRƯỜNG HỢP DỪNG QUAN TRỌNG: Nếu chuỗi rỗng, trả về 0
+                if (cleanStr === '') {
+                    return 0;
+                }
+
+                const units = { 'tỉ': 1000000000, 'triệu': 1000000, 'ngàn': 1000, 'trăm': 100 };
+
+                // 3. Tìm đơn vị lớn nhất làm điểm tựa
+                for (const unit of ['tỉ', 'triệu', 'ngàn', 'trăm']) {
+                    if (cleanStr.includes(unit)) {
+                        const parts = cleanStr.split(unit);
+                        const leftPart = parts[0].trim();
+                        const rightPart = parts.slice(1).join(unit).trim();
+
+                        let leftValue = 1;
+                        if (leftPart !== '') {
+                            leftValue = parseVietnameseCurrency(leftPart);
+                        }
+
+                        const rightValue = parseVietnameseCurrency(rightPart);
+
+                        if (leftValue === null || rightValue === null) {
+                            return null;
+                        }
+
+                        return leftValue * units[unit] + rightValue;
+                    }
+                }
+
+                // 4. TRƯỜNG HỢP DỪNG CUỐI: Xử lý chuỗi như một con số
+                const standardNumStr = cleanStr.replace(/\./g, '').replace(/,/g, '.');
+                const num = parseFloat(standardNumStr);
+
+                if (isNaN(num) || /[^0-9\.]/.test(standardNumStr)) {
+                     return null;
+                }
+
+                return num;
+            }
+        });
+    </script>
+}

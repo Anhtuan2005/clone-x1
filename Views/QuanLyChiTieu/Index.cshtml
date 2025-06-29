@@ -1,0 +1,186 @@
+﻿@model IEnumerable<bike.Models.ChiTieu>
+
+@{
+    ViewData["Title"] = "Quản lý chi tiêu";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml"; // Đảm bảo sử dụng layout admin của bạn
+}
+
+<div class="container-fluid">
+
+    <div class="page-header">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <i class="bi bi-wallet2 me-3" style="font-size: 2.5rem;"></i>
+                <div>
+                    <h2 class="mb-0">Quản lý chi tiêu</h2>
+                    <p class="mb-0 text-white-50">Theo dõi và quản lý các khoản chi của hệ thống</p>
+                </div>
+            </div>
+            <a asp-action="Create" class="btn btn-light">
+                <i class="bi bi-plus-circle me-2"></i>Thêm mới chi tiêu
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-danger shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                Tổng chi hôm nay
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@(((decimal)ViewData["TongChiHomNay"]).ToString("N0"))đ</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="bi bi-calendar-day fs-2 text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                Tổng chi tháng này
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@(((decimal)ViewData["TongChiThangNay"]).ToString("N0"))đ</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="bi bi-calendar-month fs-2 text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                Tổng số khoản chi
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.Count()</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="bi bi-receipt-cutoff fs-2 text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold" style="color: #764ba2;">Danh sách các khoản chi</h6>
+            <div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Nội dung chi tiêu</th>
+                            <th>Số tiền</th>
+                            <th>Ngày chi</th>
+                            <th>Xe liên kết</th>
+                            <th>Ghi chú</th>
+                            <th class="text-center">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.NoiDung)</td>
+                                <td class="text-danger fw-bold">@item.SoTien.ToString("N0")đ</td>
+                                <td>@item.NgayChi.ToString("dd/MM/yyyy")</td>
+                                <td>
+                                    @if (item.Xe != null)
+                                    {
+                                        <span class="badge bg-secondary">@item.Xe.BienSoXe</span>
+                                    }
+                                </td>
+                                <td>@Html.DisplayFor(modelItem => item.GhiChu)</td>
+                                <td class="text-center">
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm" title="Sửa">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm" title="Chi tiết">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm" title="Xóa">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+            .page-header h2 {
+                font-weight: 600;
+            }
+
+        .card .card-header h6 {
+            font-size: 1.1rem;
+        }
+
+        .table > tbody > tr > td {
+            vertical-align: middle;
+        }
+
+        .btn-sm {
+            width: 32px;
+            height: 32px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+
+        /* Border colors for stats cards */
+        .border-left-danger {
+            border-left: .25rem solid #e74a3b !important;
+        }
+
+        .border-left-warning {
+            border-left: .25rem solid #f6c23e !important;
+        }
+
+        .border-left-info {
+            border-left: .25rem solid #36b9cc !important;
+        }
+
+        .text-gray-300 {
+            color: #dddfeb !important;
+        }
+
+        .text-gray-800 {
+            color: #5a5c69 !important;
+        }
+    </style>
+}

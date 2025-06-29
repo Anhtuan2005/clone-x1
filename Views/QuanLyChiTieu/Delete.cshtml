@@ -1,0 +1,30 @@
+﻿@model bike.Models.ChiTieu
+
+@{
+    ViewData["Title"] = "Xóa chi tiêu";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="card shadow mb-4 border-left-danger">
+        <div class="card-header py-3">
+            <h4 class="m-0 font-weight-bold text-danger">Xác nhận xóa</h4>
+        </div>
+        <div class="card-body">
+            <h5 class="mb-4">Bạn có chắc chắn muốn xóa khoản chi này không?</h5>
+            <dl class="row">
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.NoiDung)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.NoiDung)</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.SoTien)</dt>
+                <dd class="col-sm-9 text-danger fw-bold">@Model.SoTien.ToString("N0")đ</dd>
+            </dl>
+
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="Id" />
+                <button type="submit" class="btn btn-danger"><i class="bi bi-trash me-2"></i>Xác nhận Xóa</button>
+                <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+            </form>
+        </div>
+    </div>
+</div>

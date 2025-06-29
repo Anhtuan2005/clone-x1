@@ -1,0 +1,259 @@
+﻿@model bike.Models.Xe
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .form-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .form-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 10px 10px 0 0;
+        margin-bottom: 0;
+    }
+
+    .form-body {
+        background: white;
+        padding: 30px;
+        border-radius: 0 0 10px 10px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .image-preview-container {
+        border: 3px dashed #ddd;
+        border-radius: 10px;
+        padding: 40px;
+        text-align: center;
+        background: #f8f9fa;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s;
+    }
+
+        .image-preview-container:hover {
+            border-color: #667eea;
+            background: #f0f3ff;
+        }
+
+        .image-preview-container img {
+            max-width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+        }
+
+    .upload-icon {
+        font-size: 60px;
+        color: #ddd;
+        margin-bottom: 10px;
+    }
+
+    .btn-save {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        padding: 12px 40px;
+        font-weight: 500;
+        transition: transform 0.2s;
+    }
+
+        .btn-save:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+    .form-label {
+        font-weight: 600;
+        color: #495057;
+        margin-bottom: 8px;
+    }
+
+    .form-control:focus, .form-select:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    }
+
+    .required {
+        color: #e74c3c;
+    }
+</style>
+
+<div class="container py-4">
+    <div class="form-container">
+        <!-- Header -->
+        <div class="form-header">
+            <h2 class="mb-0"><i class="bi bi-plus-circle"></i> Thêm Xe Mới</h2>
+            <p class="mb-0 opacity-75">Điền thông tin chi tiết để thêm xe vào hệ thống</p>
+        </div>
+
+        <!-- Form Body -->
+        <div class="form-body">
+            <form asp-action="Create" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                <div class="row">
+                    <!-- Cột trái -->
+                    <div class="col-md-6">
+                        <!-- Tên xe -->
+                        <div class="mb-4">
+                            <label asp-for="TenXe" class="form-label">
+                                <i class="bi bi-bicycle"></i> @Html.DisplayNameFor(model => model.TenXe)
+                                <span class="required">*</span>
+                            </label>
+                            <input asp-for="TenXe" class="form-control form-control-lg" placeholder="" />
+                            <span asp-validation-for="TenXe" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Hãng xe -->
+                        <div class="mb-4">
+                            <label asp-for="HangXe" class="form-label">
+                                <i class="bi bi-building"></i> @Html.DisplayNameFor(model => model.HangXe)
+                                <span class="required">*</span>
+                            </label>
+                            <input asp-for="HangXe" class="form-control" placeholder="VD: Honda" />
+                            <span asp-validation-for="HangXe" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Dòng xe -->
+                        <div class="mb-4">
+                            <label asp-for="DongXe" class="form-label">
+                                <i class="bi bi-tag"></i> @Html.DisplayNameFor(model => model.DongXe)
+                                <span class="required">*</span>
+                            </label>
+                            <input asp-for="DongXe" class="form-control" placeholder="VD: Wave Alpha 110cc" />
+                            <span asp-validation-for="DongXe" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Loại xe -->
+                        <div class="mb-4">
+                            <label asp-for="MaLoaiXe" class="form-label">
+                                <i class="bi bi-list-ul"></i> Loại xe
+                                <span class="required">*</span>
+                            </label>
+                            <select asp-for="MaLoaiXe" class="form-select" asp-items="ViewBag.MaLoaiXe">
+                                <option value="">-- Chọn loại xe --</option>
+                            </select>
+                            <span asp-validation-for="MaLoaiXe" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <!-- Cột phải -->
+                    <div class="col-md-6">
+                        <!-- Biển số -->
+                        <div class="mb-4">
+                            <label asp-for="BienSoXe" class="form-label">
+                                <i class="bi bi-card-text"></i> @Html.DisplayNameFor(model => model.BienSoXe)
+                                <span class="required">*</span>
+                            </label>
+                            <input asp-for="BienSoXe" class="form-control" placeholder="" />
+                            <span asp-validation-for="BienSoXe" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Giá thuê -->
+                        <div class="mb-4">
+                            <label asp-for="GiaThue" class="form-label">
+                                <i class="bi bi-currency-dollar"></i> @Html.DisplayNameFor(model => model.GiaThue)
+                                <span class="required">*</span>
+                            </label>
+                            <div class="input-group">
+                                <input asp-for="GiaThue" class="form-control" placeholder="" />
+                                <span class="input-group-text">VNĐ/ngày</span>
+                            </div>
+                            <span asp-validation-for="GiaThue" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Trạng thái -->
+                        <div class="mb-4">
+                            <label asp-for="TrangThai" class="form-label">
+                                <i class="bi bi-flag"></i> @Html.DisplayNameFor(model => model.TrangThai)
+                                <span class="required">*</span>
+                            </label>
+                            <select asp-for="TrangThai" class="form-select" asp-items="ViewBag.TrangThaiList">
+                                <option value="">-- Chọn trạng thái --</option>
+                            </select>
+                            <span asp-validation-for="TrangThai" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Hình ảnh -->
+                        <div class="mb-4">
+                            <label class="form-label">
+                                <i class="bi bi-image"></i> Hình ảnh xe
+                            </label>
+                            <div class="image-preview-container" onclick="document.getElementById('hinhAnh').click()">
+                                <input type="file" name="hinhAnh" id="hinhAnh" accept="image/*" style="display:none" onchange="previewImage(event)" />
+                                <div id="preview-content">
+                                    <i class="bi bi-cloud-upload upload-icon"></i>
+                                    <p class="mb-0">Click để chọn ảnh</p>
+                                    <small class="text-muted">JPG, PNG (Max: 5MB)</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="d-flex justify-content-between mt-5">
+                    <a asp-action="Index" class="btn btn-light btn-lg">
+                        <i class="bi bi-arrow-left"></i> Quay lại
+                    </a>
+                    <button type="submit" class="btn btn-primary btn-lg btn-save">
+                        <i class="bi bi-save"></i> Lưu xe mới
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        function previewImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('preview-content').innerHTML =
+                        '<img src="' + e.target.result + '" alt="Preview" />';
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Kiểm tra biển số real-time
+        $(document).ready(function() {
+            let timeout;
+            $('#BienSoXe').on('input', function() {
+                clearTimeout(timeout);
+                const bienSo = $(this).val();
+                const $input = $(this);
+                const $error = $input.next('.text-danger');
+
+                if (bienSo.length > 0) {
+                    timeout = setTimeout(function() {
+                        $.ajax({
+                            url: '@Url.Action("KiemTraBienSo", "Xe")',
+                            type: 'GET',
+                            data: { bienSoXe: bienSo },
+                            success: function(result) {
+                                if (result === true) {
+                                    $input.removeClass('is-invalid').addClass('is-valid');
+                                    $error.text('');
+                                } else {
+                                    $input.removeClass('is-valid').addClass('is-invalid');
+                                    $error.text(result);
+                                }
+                            }
+                        });
+                    }, 500); // Đợi 500ms sau khi ngừng gõ
+                }
+            });
+        });
+    </script>
+}

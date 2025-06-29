@@ -1,0 +1,359 @@
+﻿
+:root {
+    --primary-pink: #ff1493;
+    --secondary-pink: #c71585;
+    --accent-purple: #9370db;
+    --text-yellow: #ffd700;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Header Styles */
+.top-bar {
+    background-color: var(--primary-pink);
+    color: white;
+    padding: 10px 0;
+    font-size: 14px;
+}
+
+.logo-section {
+    background-color: #f8f9fa;
+    padding: 15px 0;
+}
+
+.logo {
+    height: 60px;
+}
+
+.brand-name {
+    color: var(--primary-pink);
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: 15px;
+}
+
+.cart-btn {
+    border: 2px dashed #666;
+    padding: 10px 20px;
+    background: white;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+/* Navigation */
+.navbar {
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link {
+    color: #333;
+    padding: 15px 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+    .navbar-nav .nav-link:hover {
+        color: var(--primary-pink);
+    }
+
+/* Navbar scroll effect */
+.navbar.scrolled {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 5px 0;
+}
+
+/* Dropdown Styles */
+.dropdown-menu {
+    border: none;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    padding: 10px 0;
+    min-width: 250px;
+}
+
+.dropdown-header {
+    color: var(--primary-pink);
+    font-weight: bold;
+    font-size: 14px;
+    padding: 10px 20px 5px;
+    text-transform: uppercase;
+}
+
+.dropdown-item {
+    padding: 8px 20px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+    .dropdown-item:hover {
+        background-color: var(--primary-pink);
+        color: white;
+        padding-left: 25px;
+    }
+
+.dropdown-divider {
+    margin: 10px 0;
+}
+
+.navbar-nav .dropdown-toggle::after {
+    margin-left: 5px;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient( 135deg, var(--primary-pink) 0%, var(--secondary-pink) 100% );
+    padding: 30px 0;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-title {
+    font-size: 42px;
+    font-weight: bold;
+    color: var(--text-yellow);
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+}
+
+.hero-features {
+    list-style: none;
+    padding: 0;
+}
+
+    .hero-features li {
+        font-size: 18px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+        position: relative;
+    }
+
+        .hero-features li:before {
+            content: "●";
+            position: absolute;
+            left: 0;
+            font-size: 24px;
+        }
+
+.hero-image {
+    position: relative;
+    z-index: 1;
+}
+
+    .hero-image img {
+        max-width: 100%;
+        height: auto;
+        max-height: 350px;
+    }
+
+.phone-button {
+    background: linear-gradient(135deg, #1e90ff 0%, #00bfff 100%);
+    color: white;
+    padding: 12px 30px;
+    font-size: 22px;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Geometric shapes background */
+.hero-section::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 400px;
+    height: 400px;
+    background: linear-gradient( 45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70% );
+    transform: rotate(45deg);
+}
+
+/* Motorbike Cards */
+.section-title {
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    margin: 50px 0 30px;
+    text-transform: uppercase;
+}
+
+.tab-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    padding: 10px 30px;
+    font-size: 18px;
+    cursor: pointer;
+    position: relative;
+    text-transform: uppercase;
+}
+
+    .tab-btn.active {
+        color: var(--primary-pink);
+    }
+
+        .tab-btn.active::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--primary-pink);
+        }
+
+.bike-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s;
+    height: 100%;
+}
+
+    .bike-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .bike-card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
+
+.bike-info {
+    padding: 20px;
+    text-align: center;
+}
+
+.bike-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.bike-price {
+    color: var(--primary-pink);
+}
+
+/* Service Icons */
+.services-section {
+    padding: 60px 0;
+    background-color: #f8f9fa;
+}
+
+.service-item {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.service-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #7cfc00 0%, #32cd32 100%);
+    border-radius: 50% 20% 50% 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    color: white;
+    font-size: 30px;
+    transform: rotate(15deg);
+}
+
+    .service-icon i {
+        transform: rotate(-15deg);
+    }
+
+.service-title {
+    color: var(--primary-pink);
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+/* Footer */
+.footer {
+    background: linear-gradient( 135deg, var(--secondary-pink) 0%, var(--accent-purple) 100% );
+    color: white;
+    padding: 50px 0 20px;
+}
+
+.footer-logo {
+    height: 80px;
+    margin-bottom: 20px;
+}
+
+.footer h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.footer-company-name {
+    color: var(--text-yellow);
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer li {
+    margin-bottom: 10px;
+}
+
+.footer a {
+    color: white;
+    text-decoration: none;
+}
+
+    .footer a:hover {
+        color: var(--text-yellow);
+    }
+
+.contact-info i {
+    margin-right: 10px;
+    color: var(--text-yellow);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 32px;
+    }
+
+    .hero-features li {
+        font-size: 16px;
+    }
+
+    .phone-button {
+        font-size: 18px;
+        padding: 10px 25px;
+    }
+
+    .hero-section {
+        padding: 20px 0;
+    }
+}

@@ -1,0 +1,307 @@
+﻿@model IEnumerable<bike.Models.Xe>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Quản Lý Xe";
+}
+
+<!-- CSS Bootstrap 5 đã có sẵn -->
+<style>
+    .stat-card {
+        text-align: center;
+        padding: 20px;
+        border-radius: 8px;
+        background: white;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .stat-number {
+        font-size: 48px;
+        font-weight: bold;
+        color: #ff0080;
+    }
+
+    .btn-add {
+        background: #0066ff;
+        color: white;
+        border: none;
+    }
+
+        .btn-add:hover {
+            background: #0052cc;
+            color: white;
+        }
+
+    /* Styles cho disabled buttons */
+    .btn-disabled {
+        opacity: 0.5;
+        cursor: not-allowed !important;
+        pointer-events: none;
+    }
+
+    /* Tooltip styles */
+    .btn-wrapper {
+        position: relative;
+        display: inline-block;
+    }
+
+    .custom-tooltip {
+        position: absolute;
+        bottom: 125%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #333;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 12px;
+        white-space: nowrap;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s;
+        z-index: 1000;
+    }
+
+        .custom-tooltip::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #333 transparent transparent transparent;
+        }
+
+    .btn-wrapper:hover .custom-tooltip {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    /* Badge cho xe đang thuê */
+    .rental-indicator {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        width: 10px;
+        height: 10px;
+        background-color: #ff6b6b;
+        border-radius: 50%;
+        animation: pulse 1.5s infinite;
+    }
+
+    @@keyframes pulse {
+        0%
+
+    {
+        box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 107, 107, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 107, 107, 0);
+    }
+
+    }
+</style>
+
+<div class="container-fluid">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Quản Lý Xe</h1>
+        <a asp-action="Create" class="btn btn-add">
+            <i class="bi bi-plus-circle"></i> Thêm Xe Mới
+        </a>
+    </div>
+
+    <!-- Thống kê -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="stat-card">
+                <div class="stat-number">@ViewBag.TongSoXe</div>
+                <div>Tổng số xe</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card">
+                <div class="stat-number">@ViewBag.XeSanSang</div>
+                <div>Xe sẵn sàng</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card">
+                <div class="stat-number">@ViewBag.DangChoThue</div>
+                <div>Đang cho thuê</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card">
+                <div class="stat-number">@ViewBag.BaoTri</div>
+                <div>Bảo trì</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bộ lọc -->
+    <form method="get" class="row g-3 mb-4">
+        <div class="col-md-3">
+            <input type="text" name="searchString" class="form-control" placeholder="Tìm kiếm xe..." value="@Context.Request.Query["searchString"]" />
+        </div>
+        <div class="col-md-2">
+            <select name="loaiXe" class="form-select">
+                <option value="">Loại xe</option>
+                @foreach (var item in ViewBag.LoaiXeList as SelectList)
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-2">
+            <select name="hangXe" class="form-select">
+                <option value="">Hãng xe</option>
+                @foreach (var item in ViewBag.HangXeList as SelectList)
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-2">
+            <select name="trangThai" class="form-select">
+                <option value="">Trạng thái</option>
+                @foreach (var item in ViewBag.TrangThaiList as SelectList)
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-secondary">
+                <i class="bi bi-funnel"></i> Lọc
+            </button>
+        </div>
+    </form>
+
+    <!-- Bảng danh sách -->
+    <div class="card">
+        <div class="card-header d-flex justify-content-between">
+            <h5>Danh sách xe</h5>
+            <div>
+                <button class="btn btn-success btn-sm">
+                    <i class="bi bi-file-excel"></i> Xuất Excel
+                </button>
+                <button class="btn btn-primary btn-sm">
+                    <i class="bi bi-printer"></i> In
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Mã xe</th>
+                        <th>Hình ảnh</th>
+                        <th>Tên xe</th>
+                        <th>Loại xe</th>
+                        <th>Biển số</th>
+                        <th>Giá thuê/ngày</th>
+                        <th>Tổng chi phí</th>
+                        <th>Trạng thái</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var xe in Model)
+                    {
+                        <tr>
+                            <td>#XE@(xe.MaXe.ToString("D3"))</td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(xe.HinhAnhXe))
+                                {
+                                    <img src="~/images/xe/@xe.HinhAnhXe" style="width:50px;height:50px;object-fit:cover;" />
+                                }
+                                else
+                                {
+                                    <i class="bi bi-image" style="font-size:30px;color:#ccc;"></i>
+                                }
+                            </td>
+                            <td>
+                                <strong>@xe.TenXe</strong>
+                                @if (xe.TrangThai == "Đang thuê")
+                                {
+                                    <span class="position-relative">
+                                        <span class="rental-indicator"></span>
+                                    </span>
+                                }
+                            </td>
+                            <td>@xe.LoaiXe?.TenLoaiXe</td>
+                            <td>@xe.BienSoXe</td>
+                            <td class="text-danger"><strong>@xe.GiaThue.ToString("N0")đ</strong></td>
+                            <td class="text-danger">
+                                <strong>@xe.ChiTieu.Sum(c => c.SoTien).ToString("N0")đ</strong>
+                            </td>
+                            <td>
+                                @{
+                                    string badgeClass = xe.TrangThai switch
+                                    {
+                                        "Sẵn sàng" => "bg-success",
+                                        "Đang thuê" => "bg-warning text-dark",
+                                        "Bảo trì" => "bg-danger",
+                                        _ => "bg-secondary"
+                                    };
+                                }
+                                <span class="badge @badgeClass">@xe.TrangThai</span>
+                            </td>
+                            <td>
+                                @if (xe.TrangThai == "Đang thuê")
+                                {
+                                    <!-- Edit button disabled -->
+                                    <span class="btn-wrapper">
+                                        <button class="btn btn-warning btn-sm btn-disabled" disabled>
+                                            <i class="bi bi-pencil"></i>
+                                        </button>
+                                        <span class="custom-tooltip">Không thể sửa xe đang cho thuê</span>
+                                    </span>
+                                    <!-- Delete button disabled -->
+                                    <span class="btn-wrapper">
+                                        <button class="btn btn-danger btn-sm btn-disabled" disabled>
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                        <span class="custom-tooltip">Không thể xóa xe đang cho thuê</span>
+                                    </span>
+                                }
+                                else
+                                {
+                                    <!-- Normal Edit/Delete buttons -->
+                                    <a asp-action="Edit" asp-route-id="@xe.MaXe" class="btn btn-warning btn-sm">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@xe.MaXe" class="btn btn-danger btn-sm"
+                                       onclick="return confirm('Bạn có chắc chắn muốn xóa xe này?');">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Optional: Thêm thông báo khi user cố click vào button disabled
+        $(document).ready(function() {
+            // Prevent any accidental clicks on disabled buttons
+            $('.btn-disabled').on('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            });
+        });
+    </script>
+}

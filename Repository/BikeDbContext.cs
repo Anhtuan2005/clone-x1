@@ -26,7 +26,14 @@ namespace bike.Repository
         {
             base.OnModelCreating(modelBuilder);
 
-            
+            modelBuilder.Entity<ChiTieu>(e => e.Property(p => p.SoTien).HasColumnType("decimal(18, 2)"));
+            modelBuilder.Entity<HopDong>(e => {
+                e.Property(p => p.GiaThueNgay).HasColumnType("decimal(18, 2)");
+                e.Property(p => p.PhuPhi).HasColumnType("decimal(18, 2)");
+                e.Property(p => p.TienCoc).HasColumnType("decimal(18, 2)");
+                e.Property(p => p.TongTien).HasColumnType("decimal(18, 2)");
+            });
+            modelBuilder.Entity<Xe>(e => e.Property(p => p.GiaThue).HasColumnType("decimal(18, 2)"));
         }
     }
 }

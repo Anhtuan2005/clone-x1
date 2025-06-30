@@ -174,39 +174,57 @@
     </div>
 
     <!-- Statistics Cards -->
-    <div class="row mb-4">
+    <div class="row">
+        <div class="col-12"><h4 class="mb-3 text-muted">Tổng quan tài chính</h4></div>
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="stat-card shadow-sm">
+                <div class="stat-icon green text-white"><i class="bi bi-cash-stack"></i></div>
+                <div class="stat-value">@Model.TongDoanhThu.ToString("N0")đ</div>
+                <div class="stat-label">Tổng Doanh Thu</div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="stat-card shadow-sm">
+                <div class="stat-icon orange text-white"><i class="bi bi-wallet2"></i></div>
+                <div class="stat-value">@Model.TongChiPhi.ToString("N0")đ</div>
+                <div class="stat-label">Tổng Chi Phí</div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+            @{
+                var profitClass = Model.LoiNhuan >= 0 ? "blue" : "orange";
+            }
+            <div class="stat-card shadow-sm">
+                <div class="stat-icon @profitClass text-white"><i class="bi bi-bar-chart-line-fill"></i></div>
+                <div class="stat-value">@Model.LoiNhuan.ToString("N0")đ</div>
+                <div class="stat-label">Lợi Nhuận</div>
+            </div>
+        </div>
+    </div>
+    <hr class="my-4">
+    <div class="row">
+        <div class="col-12"><h4 class="mb-3 text-muted">Tình hình hoạt động</h4></div>
+        @* Đoạn code này được lấy từ code bạn đã cung cấp *@
         <div class="col-lg-3 col-md-6 mb-3">
             <div class="stat-card">
                 <div class="stat-icon blue text-white">
                     <i class="bi bi-calendar-check"></i>
                 </div>
                 <div class="stat-value">@Model.TongDonDatXe</div>
-                <div class="stat-label">Tổng đơn đặt xe</div>
-                @if (Model.PhanTramDonDat != 0)
-                {
-                    <div class="stat-change @(Model.PhanTramDonDat > 0 ? "positive" : "negative")">
-                        <i class="bi bi-arrow-@(Model.PhanTramDonDat > 0 ? "up" : "down")"></i>
-                        @Math.Abs(Model.PhanTramDonDat).ToString("F1")% so với kỳ trước
-                    </div>
-                }
+                <div class="stat-label">Tổng đơn đặt xe (theo bộ lọc)</div>
             </div>
         </div>
-
         <div class="col-lg-3 col-md-6 mb-3">
             <a href="@Url.Action("DonChoXuLy", "QuanLyHopDong")" class="text-decoration-none">
-                <div class="stat-card" style="cursor: pointer; transition: all 0.3s;">
+                <div class="stat-card" style="cursor: pointer;">
                     <div class="stat-icon orange text-white">
                         <i class="bi bi-hourglass-split"></i>
                     </div>
                     <div class="stat-value">@Model.DonChoXuLy</div>
-                    <div class="stat-label">Đơn chờ xử lý</div>
-                    <div class="text-muted small mt-2">
-                        <i class="bi bi-arrow-right-circle"></i> Click để xử lý
-                    </div>
+                    <div class="stat-label">Đơn chờ xử lý (hiện tại)</div>
                 </div>
             </a>
         </div>
-
         <div class="col-lg-3 col-md-6 mb-3">
             <div class="stat-card">
                 <div class="stat-icon green text-white">
@@ -216,7 +234,6 @@
                 <div class="stat-label">Doanh thu hôm nay</div>
             </div>
         </div>
-
         <div class="col-lg-3 col-md-6 mb-3">
             <div class="stat-card">
                 <div class="stat-icon purple text-white">

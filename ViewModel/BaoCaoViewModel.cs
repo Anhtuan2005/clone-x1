@@ -8,9 +8,14 @@ namespace bike.ViewModels
         // Thời gian lọc
         public DateTime TuNgay { get; set; }
         public DateTime DenNgay { get; set; }
+        // Dữ liệu cho các thẻ tài chính
+        public decimal TongDoanhThu { get; set; }
+        public decimal TongChiPhi { get; set; }
+        public decimal LoiNhuan { get; set; }
 
         // Thống kê tổng quan
         public int TongDonDatXe { get; set; }
+
         public int DonChoXuLy { get; set; }
         public decimal DoanhThuHomNay { get; set; }
         public int XeDangChoThue { get; set; }
@@ -29,6 +34,7 @@ namespace bike.ViewModels
         // Danh sách đơn gần đây
         public List<DonDatGanDayItem> DonDatGanDay { get; set; }
 
+       
         public BaoCaoViewModel()
         {
             BieuDoDoanhThu = new List<BieuDoItem>();
@@ -65,4 +71,5 @@ namespace bike.ViewModels
         public string ?TrangThai { get; set; }
         public decimal TongTien { get; set; }
     }
+
 }

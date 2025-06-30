@@ -22,89 +22,51 @@ namespace bike.Controllers
         }
 
         // GET: BaoCao
+        // GET: BaoCao/Index
         public async Task<IActionResult> Index(DateTime? tuNgay, DateTime? denNgay)
         {
-            // Nếu không có ngày, mặc định lấy 30 ngày gần nhất
-            var endDate = denNgay ?? DateTime.Now.Date;
-            var startDate = tuNgay ?? endDate.AddDays(-30);
+            // --- PHẦN 1: XỬ LÝ VÀ CHUẨN BỊ NGÀY THÁNG ---
 
-            var viewModel = new BaoCaoViewModel
-            {
-                TuNgay = startDate,
-                DenNgay = endDate
-            };
+            // Nếu người dùng không chọn ngày, mặc định sẽ là từ đầu tháng hiện tại đến ngày hôm nay
+            var today = DateTime.Today;
+            var startDate = tuNgay ?? new DateTime(today.Year, today.Month, 1);
+            var endDate = denNgay ?? today;
 
-            // 1. Thống kê tổng quan
-            // Tổng đơn đặt xe trong khoảng thời gian
-            viewModel.TongDonDatXe = await _context.DatCho
-                .Where(d => d.NgayDat >= startDate && d.NgayDat <= endDate.AddDays(1))
+            // Để đảm bảo các truy vấn bao gồm cả ngày cuối cùng, ta sẽ lấy đến cuối ngày (23:59:59)
+            var fullEndDate = endDate.Date.AddDays(1).AddTicks(-1);
+
+            // --- PHẦN 2: TRUY VẤN VÀ TÍNH TOÁN DỮ LIỆU ---
+
+            // 2.1. Tính toán các chỉ số tài chính chính trong khoảng thời gian đã chọn
+            decimal tongDoanhThu = await _context.HopDong
+                .Where(h => h.TrangThai == "Hoàn thành" && h.NgayTraXeThucTe >= startDate && h.NgayTraXeThucTe <= fullEndDate)
+                .SumAsync(h => (decimal?)h.TongTien) ?? 0;
+
+            decimal tongChiPhi = await _context.ChiTieu
+                .Where(c => c.NgayChi >= startDate && c.NgayChi <= fullEndDate)
+                .SumAsync(c => (decimal?)c.SoTien) ?? 0;
+
+            // 2.2. Tính toán các chỉ số hoạt động trong khoảng thời gian đã chọn (lấy từ code cũ của bạn)
+            int tongDonDatXe = await _context.DatCho
+                .Where(d => d.NgayDat >= startDate && d.NgayDat <= fullEndDate)
                 .CountAsync();
 
-            // Đơn chờ xử lý
-            viewModel.DonChoXuLy = await _context.DatCho
+            // 2.3. Tính toán các chỉ số tức thời (không phụ thuộc vào bộ lọc ngày)
+            int donChoXuLy = await _context.DatCho
                 .Where(d => d.TrangThai == "Chờ xác nhận" || d.TrangThai == "Đang giữ chỗ")
                 .CountAsync();
 
-            // Doanh thu hôm nay
-            var today = DateTime.Now.Date;
-            viewModel.DoanhThuHomNay = await _context.HopDong
-                .Where(h => h.NgayTao.Date == today)
-                .SumAsync(h => h.TongTien);
+            decimal doanhThuHomNay = await _context.HopDong
+                .Where(h => h.TrangThai == "Hoàn thành" && h.NgayTraXeThucTe.HasValue && h.NgayTraXeThucTe.Value.Date == today)
+                .SumAsync(h => (decimal?)h.TongTien) ?? 0;
 
-            // Xe đang cho thuê
-            viewModel.XeDangChoThue = await _context.Xe
+            int xeDangChoThue = await _context.Xe
                 .Where(x => x.TrangThai == "Đang thuê")
                 .CountAsync();
 
-            // 2. Tính % tăng/giảm so với kỳ trước
-            var previousPeriodDays = (endDate - startDate).Days;
-            var previousStartDate = startDate.AddDays(-previousPeriodDays - 1);
-            var previousEndDate = startDate.AddDays(-1);
-
-            var previousDonDat = await _context.DatCho
-                .Where(d => d.NgayDat >= previousStartDate && d.NgayDat <= previousEndDate)
-                .CountAsync();
-
-            if (previousDonDat > 0)
-            {
-                viewModel.PhanTramDonDat = ((double)(viewModel.TongDonDatXe - previousDonDat) / previousDonDat) * 100;
-            }
-
-            // 3. Dữ liệu biểu đồ doanh thu (7 ngày gần nhất)
-            var last7Days = Enumerable.Range(0, 7)
-                .Select(i => DateTime.Now.Date.AddDays(-6 + i))
-                .ToList();
-
-            foreach (var date in last7Days)
-            {
-                var doanhThuNgay = await _context.HopDong
-                    .Where(h => h.NgayTao.Date == date)
-                    .SumAsync(h => h.TongTien);
-
-                viewModel.BieuDoDoanhThu.Add(new BieuDoItem
-                {
-                    Label = date.ToString("dd/MM"),
-                    Value = doanhThuNgay
-                });
-            }
-
-            // 4. Dữ liệu biểu đồ đơn đặt xe (7 ngày gần nhất)
-            foreach (var date in last7Days)
-            {
-                var donDatNgay = await _context.DatCho
-                    .Where(d => d.NgayDat.Date == date)
-                    .CountAsync();
-
-                viewModel.BieuDoDonDat.Add(new BieuDoItem
-                {
-                    Label = date.ToString("dd/MM"),
-                    Value = donDatNgay
-                });
-            }
-
-            // 5. Top 5 xe được thuê nhiều nhất
+            // 2.4. Lấy dữ liệu cho các bảng và biểu đồ (kết hợp từ code cũ của bạn)
             var topXe = await _context.HopDong
-                .Where(h => h.NgayTao >= startDate && h.NgayTao <= endDate.AddDays(1))
+                .Where(h => h.NgayTao >= startDate && h.NgayTao <= fullEndDate)
                 .GroupBy(h => new { h.MaXe, h.Xe.TenXe, h.Xe.BienSoXe })
                 .Select(g => new XeThueNhieuItem
                 {
@@ -117,25 +79,29 @@ namespace bike.Controllers
                 .Take(5)
                 .ToListAsync();
 
-            viewModel.TopXeThueNhieu = topXe;
+            // --- PHẦN 3: TẠO VIEWMODEL VÀ GỬI DỮ LIỆU SANG VIEW ---
 
-            // 6. 10 đơn đặt gần đây
-            var donGanDay = await _context.DatCho
-                .Include(d => d.Xe)
-                .OrderByDescending(d => d.NgayDat)
-                .Take(10)
-                .Select(d => new DonDatGanDayItem
-                {
-                    MaDatCho = d.MaDatCho,
-                    TenKhach = d.HoTen,
-                    TenXe = d.Xe.TenXe,
-                    NgayDat = d.NgayDat,
-                    TrangThai = d.TrangThai,
-                    TongTien = d.TongTienDuKien
-                })
-                .ToListAsync();
+            var viewModel = new BaoCaoViewModel
+            {
+                // Gán ngày tháng cho bộ lọc
+                TuNgay = startDate,
+                DenNgay = endDate,
 
-            viewModel.DonDatGanDay = donGanDay;
+                // Gán dữ liệu tài chính
+                TongDoanhThu = tongDoanhThu,
+                TongChiPhi = tongChiPhi,
+                LoiNhuan = tongDoanhThu - tongChiPhi,
+
+                // Gán dữ liệu hoạt động
+                TongDonDatXe = tongDonDatXe,
+                DonChoXuLy = donChoXuLy,
+                DoanhThuHomNay = doanhThuHomNay,
+                XeDangChoThue = xeDangChoThue,
+
+                // Gán dữ liệu bảng
+                TopXeThueNhieu = topXe
+                // Bạn có thể thêm các phần dữ liệu cho biểu đồ ở đây nếu cần
+            };
 
             return View(viewModel);
         }
